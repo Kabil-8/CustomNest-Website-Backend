@@ -1,0 +1,2174 @@
+{
+  "categories": [
+    {
+      "slug": "jumbo-flower-bouquets",
+      "name": "Jumbo Flower Bouquets",
+      "collection": "jumbo-flower-bouquets",
+      "image": "/images/categories/jumbo-flower-bouquets.jpg"
+    },
+    {
+      "slug": "single-flowers",
+      "name": "Single Crochet Flowers",
+      "collection": "single-flowers",
+      "image": "/images/categories/single-flowers.jpg"
+    },
+    {
+      "slug": "special-combo-bouquets",
+      "name": "Combo Bouquets",
+      "collection": "special-combo-bouquets",
+      "image": "/images/categories/special-combo-bouquets.jpg"
+    },
+    {
+      "slug": "flower-pots",
+      "name": "Potted Flower Arrangements",
+      "collection": "flower-pots",
+      "image": "/images/categories/flower-pots.jpg"
+    },
+    {
+      "slug": "characters",
+      "name": "Character Amigurumi",
+      "collection": "characters",
+      "image": "/images/categories/characters.jpg"
+    },
+    {
+      "slug": "mini-toys",
+      "name": "Mini Toys",
+      "collection": "plushies",
+      "image": "/images/categories/mini-toys.jpg"
+    },
+    {
+      "slug": "kids-toys-jumbo",
+      "name": "Jumbo Kids Toys",
+      "collection": "plushies",
+      "image": "/images/categories/kids-toys-jumbo.jpg"
+    },
+    {
+      "slug": "plushies",
+      "name": "Plushies",
+      "collection": "plushies",
+      "image": "/images/categories/plushies.jpg"
+    },
+    {
+      "slug": "keychains",
+      "name": "Crochet Keychains",
+      "collection": "keychains-charms",
+      "image": "/images/categories/keychains.jpg"
+    },
+    {
+      "slug": "charms",
+      "name": "Crochet Charms",
+      "collection": "keychains-charms",
+      "image": "/images/categories/charms.jpg"
+    },
+    {
+      "slug": "crochet-magnets",
+      "name": "Crochet Fridge Magnets",
+      "collection": "keychains-charms",
+      "image": "/images/categories/crochet-magnets.jpg"
+    },
+    {
+      "slug": "hair-accessories",
+      "name": "Hair Accessories",
+      "collection": "hair-accessories",
+      "image": "/images/categories/hair-accessories.jpg"
+    },
+    {
+      "slug": "resin-frames",
+      "name": "Resin Photo Frames",
+      "collection": "resin-frames",
+      "image": "/images/categories/resin-frames.jpg"
+    },
+    {
+      "slug": "string-arts",
+      "name": "String Art",
+      "collection": "resin-frames",
+      "image": "/images/categories/string-arts.jpg"
+    },
+    {
+      "slug": "pouchcase",
+      "name": "Pouches & Cases",
+      "collection": "macrame-bag",
+      "image": "/images/categories/pouchcase.jpg"
+    },
+    {
+      "slug": "macrame-bag",
+      "name": "Macrame Bags",
+      "collection": "macrame-bag",
+      "image": "/images/categories/macrame-bag.jpg"
+    },
+    {
+      "slug": "customised-gifts",
+      "name": "Customised Gifts",
+      "collection": "customised-gifts",
+      "image": "/images/categories/customised-gifts.jpg"
+    },
+    {
+      "slug": "event-specific",
+      "name": "Event & Occasion Specials",
+      "collection": "event-specific",
+      "image": "/images/categories/event-specific.jpg"
+    },
+    {
+      "slug": "return-gifts",
+      "name": "Return Gift Sets",
+      "collection": "customised-gifts",
+      "image": "/images/categories/return-gifts.jpg"
+    },
+    {
+      "slug": "add-ons",
+      "name": "Add-Ons & Extras",
+      "collection": "customised-gifts",
+      "image": "/images/categories/add-ons.jpg"
+    },
+    {
+      "slug": "beads",
+      "name": "Beaded Details",
+      "collection": "customised-gifts",
+      "image": "/images/categories/beads.jpg"
+    }
+  ],
+  "products": [
+    {
+      "slug": "blush-peony-jumbo-bouquet-001",
+      "name": "Blush Peony Jumbo Bouquet",
+      "category": "jumbo-flower-bouquets",
+      "price": 800,
+      "compareAtPrice": 950,
+      "images": [
+        "/images/products/jumbo-flower-bouquets/jumbo-flower-bouquets-01.jpg"
+      ],
+      "description": "A generous handful of hand-crocheted blooms, gathered and wrapped like a fresh-cut bouquet that never wilts.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": true,
+      "isNew": false,
+      "customizable": false,
+      "stock": 4,
+      "rating": 4.7,
+      "reviewCount": 84
+    },
+    {
+      "slug": "crimson-rose-jumbo-bouquet-002",
+      "name": "Crimson Rose Jumbo Bouquet",
+      "category": "jumbo-flower-bouquets",
+      "price": 1020,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/jumbo-flower-bouquets/jumbo-flower-bouquets-02.jpg"
+      ],
+      "description": "A generous handful of hand-crocheted blooms, gathered and wrapped like a fresh-cut bouquet that never wilts.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 25,
+      "rating": 4.8,
+      "reviewCount": 11
+    },
+    {
+      "slug": "sunshine-daisy-jumbo-bouquet-003",
+      "name": "Sunshine Daisy Jumbo Bouquet",
+      "category": "jumbo-flower-bouquets",
+      "price": 1240,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/jumbo-flower-bouquets/jumbo-flower-bouquets-03.jpg"
+      ],
+      "description": "A generous handful of hand-crocheted blooms, gathered and wrapped like a fresh-cut bouquet that never wilts.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": true,
+      "isNew": false,
+      "customizable": false,
+      "stock": 0,
+      "rating": 4.8,
+      "reviewCount": 73
+    },
+    {
+      "slug": "golden-tulip-jumbo-bouquet-004",
+      "name": "Golden Tulip Jumbo Bouquet",
+      "category": "jumbo-flower-bouquets",
+      "price": 1460,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/jumbo-flower-bouquets/jumbo-flower-bouquets-04.jpg"
+      ],
+      "description": "A generous handful of hand-crocheted blooms, gathered and wrapped like a fresh-cut bouquet that never wilts.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 0,
+      "rating": 4.7,
+      "reviewCount": 81
+    },
+    {
+      "slug": "ivory-lily-jumbo-bouquet-005",
+      "name": "Ivory Lily Jumbo Bouquet",
+      "category": "jumbo-flower-bouquets",
+      "price": 1680,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/jumbo-flower-bouquets/jumbo-flower-bouquets-05.jpg"
+      ],
+      "description": "A generous handful of hand-crocheted blooms, gathered and wrapped like a fresh-cut bouquet that never wilts.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 4,
+      "rating": 4.7,
+      "reviewCount": 41
+    },
+    {
+      "slug": "wildflower-jumbo-bouquet-006",
+      "name": "Wildflower Jumbo Bouquet",
+      "category": "jumbo-flower-bouquets",
+      "price": 1900,
+      "compareAtPrice": 1900,
+      "images": [
+        "/images/products/jumbo-flower-bouquets/jumbo-flower-bouquets-06.jpg"
+      ],
+      "description": "A generous handful of hand-crocheted blooms, gathered and wrapped like a fresh-cut bouquet that never wilts.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 11,
+      "rating": 4.8,
+      "reviewCount": 9
+    },
+    {
+      "slug": "blush-carnation-stem-007",
+      "name": "Blush Carnation Stem",
+      "category": "single-flowers",
+      "price": 150,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/single-flowers/single-flowers-01.jpg"
+      ],
+      "description": "A single handmade stem, perfect on its own or gathered with others — a small, lasting token that keeps its bloom forever.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 23,
+      "rating": 5.0,
+      "reviewCount": 56
+    },
+    {
+      "slug": "petite-daisy-stem-008",
+      "name": "Petite Daisy Stem",
+      "category": "single-flowers",
+      "price": 200,
+      "compareAtPrice": 200,
+      "images": [
+        "/images/products/single-flowers/single-flowers-02.jpg"
+      ],
+      "description": "A single handmade stem, perfect on its own or gathered with others — a small, lasting token that keeps its bloom forever.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": true,
+      "isNew": false,
+      "customizable": false,
+      "stock": 0,
+      "rating": 4.7,
+      "reviewCount": 58
+    },
+    {
+      "slug": "dainty-tulip-stem-009",
+      "name": "Dainty Tulip Stem",
+      "category": "single-flowers",
+      "price": 250,
+      "compareAtPrice": 350,
+      "images": [
+        "/images/products/single-flowers/single-flowers-03.jpg"
+      ],
+      "description": "A single handmade stem, perfect on its own or gathered with others — a small, lasting token that keeps its bloom forever.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 6,
+      "rating": 4.6,
+      "reviewCount": 77
+    },
+    {
+      "slug": "snowdrop-stem-010",
+      "name": "Snowdrop Stem",
+      "category": "single-flowers",
+      "price": 300,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/single-flowers/single-flowers-04.jpg"
+      ],
+      "description": "A single handmade stem, perfect on its own or gathered with others — a small, lasting token that keeps its bloom forever.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": true,
+      "isNew": false,
+      "customizable": false,
+      "stock": 20,
+      "rating": 4.6,
+      "reviewCount": 59
+    },
+    {
+      "slug": "wild-cosmos-stem-011",
+      "name": "Wild Cosmos Stem",
+      "category": "single-flowers",
+      "price": 350,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/single-flowers/single-flowers-05.jpg"
+      ],
+      "description": "A single handmade stem, perfect on its own or gathered with others — a small, lasting token that keeps its bloom forever.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 0,
+      "rating": 4.5,
+      "reviewCount": 29
+    },
+    {
+      "slug": "coral-poppy-stem-012",
+      "name": "Coral Poppy Stem",
+      "category": "single-flowers",
+      "price": 400,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/single-flowers/single-flowers-06.jpg"
+      ],
+      "description": "A single handmade stem, perfect on its own or gathered with others — a small, lasting token that keeps its bloom forever.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 0,
+      "rating": 4.6,
+      "reviewCount": 39
+    },
+    {
+      "slug": "sweetheart-combo-bouquet-013",
+      "name": "Sweetheart Combo Bouquet",
+      "category": "special-combo-bouquets",
+      "price": 900,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/special-combo-bouquets/special-combo-bouquets-01.jpg"
+      ],
+      "description": "An artfully mixed arrangement combining several crochet blooms into one keepsake bouquet.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 7,
+      "rating": 4.7,
+      "reviewCount": 81
+    },
+    {
+      "slug": "pastel-meadow-combo-bouquet-014",
+      "name": "Pastel Meadow Combo Bouquet",
+      "category": "special-combo-bouquets",
+      "price": 1160,
+      "compareAtPrice": 1160,
+      "images": [
+        "/images/products/special-combo-bouquets/special-combo-bouquets-02.jpg"
+      ],
+      "description": "An artfully mixed arrangement combining several crochet blooms into one keepsake bouquet.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": true,
+      "isNew": false,
+      "customizable": false,
+      "stock": 19,
+      "rating": 4.9,
+      "reviewCount": 37
+    },
+    {
+      "slug": "blush-and-cream-combo-bouquet-015",
+      "name": "Blush & Cream Combo Bouquet",
+      "category": "special-combo-bouquets",
+      "price": 1420,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/special-combo-bouquets/special-combo-bouquets-03.jpg"
+      ],
+      "description": "An artfully mixed arrangement combining several crochet blooms into one keepsake bouquet.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": true,
+      "customizable": false,
+      "stock": 3,
+      "rating": 4.7,
+      "reviewCount": 67
+    },
+    {
+      "slug": "golden-hour-combo-bouquet-016",
+      "name": "Golden Hour Combo Bouquet",
+      "category": "special-combo-bouquets",
+      "price": 1680,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/special-combo-bouquets/special-combo-bouquets-04.jpg"
+      ],
+      "description": "An artfully mixed arrangement combining several crochet blooms into one keepsake bouquet.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 11,
+      "rating": 4.6,
+      "reviewCount": 56
+    },
+    {
+      "slug": "garden-mix-combo-bouquet-017",
+      "name": "Garden Mix Combo Bouquet",
+      "category": "special-combo-bouquets",
+      "price": 1940,
+      "compareAtPrice": 2140,
+      "images": [
+        "/images/products/special-combo-bouquets/special-combo-bouquets-05.jpg"
+      ],
+      "description": "An artfully mixed arrangement combining several crochet blooms into one keepsake bouquet.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 0,
+      "rating": 5.0,
+      "reviewCount": 22
+    },
+    {
+      "slug": "wildflower-basket-combo-bouquet-018",
+      "name": "Wildflower Basket Combo Bouquet",
+      "category": "special-combo-bouquets",
+      "price": 2200,
+      "compareAtPrice": 2200,
+      "images": [
+        "/images/products/special-combo-bouquets/special-combo-bouquets-06.jpg"
+      ],
+      "description": "An artfully mixed arrangement combining several crochet blooms into one keepsake bouquet.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": false,
+      "isNew": true,
+      "customizable": false,
+      "stock": 7,
+      "rating": 4.9,
+      "reviewCount": 14
+    },
+    {
+      "slug": "ivory-vase-flower-pot-019",
+      "name": "Ivory Vase Flower Pot",
+      "category": "flower-pots",
+      "price": 450,
+      "compareAtPrice": 550,
+      "images": [
+        "/images/products/flower-pots/flower-pots-01.jpg"
+      ],
+      "description": "A potted arrangement of crochet blooms, styled to sit pretty on a shelf, desk, or windowsill all year round.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": true,
+      "isNew": true,
+      "customizable": false,
+      "stock": 2,
+      "rating": 5.0,
+      "reviewCount": 72
+    },
+    {
+      "slug": "sunlit-windowsill-flower-pot-020",
+      "name": "Sunlit Windowsill Flower Pot",
+      "category": "flower-pots",
+      "price": 600,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/flower-pots/flower-pots-02.jpg"
+      ],
+      "description": "A potted arrangement of crochet blooms, styled to sit pretty on a shelf, desk, or windowsill all year round.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 25,
+      "rating": 4.9,
+      "reviewCount": 10
+    },
+    {
+      "slug": "terracotta-flower-pot-021",
+      "name": "Terracotta Flower Pot",
+      "category": "flower-pots",
+      "price": 750,
+      "compareAtPrice": 750,
+      "images": [
+        "/images/products/flower-pots/flower-pots-03.jpg"
+      ],
+      "description": "A potted arrangement of crochet blooms, styled to sit pretty on a shelf, desk, or windowsill all year round.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": true,
+      "isNew": false,
+      "customizable": false,
+      "stock": 25,
+      "rating": 4.5,
+      "reviewCount": 75
+    },
+    {
+      "slug": "blush-ceramic-flower-pot-022",
+      "name": "Blush Ceramic Flower Pot",
+      "category": "flower-pots",
+      "price": 900,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/flower-pots/flower-pots-04.jpg"
+      ],
+      "description": "A potted arrangement of crochet blooms, styled to sit pretty on a shelf, desk, or windowsill all year round.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": false,
+      "isNew": true,
+      "customizable": false,
+      "stock": 0,
+      "rating": 5.0,
+      "reviewCount": 51
+    },
+    {
+      "slug": "cottage-garden-flower-pot-023",
+      "name": "Cottage Garden Flower Pot",
+      "category": "flower-pots",
+      "price": 1050,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/flower-pots/flower-pots-05.jpg"
+      ],
+      "description": "A potted arrangement of crochet blooms, styled to sit pretty on a shelf, desk, or windowsill all year round.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": true,
+      "isNew": true,
+      "customizable": false,
+      "stock": 0,
+      "rating": 4.8,
+      "reviewCount": 54
+    },
+    {
+      "slug": "woven-basket-flower-pot-024",
+      "name": "Woven Basket Flower Pot",
+      "category": "flower-pots",
+      "price": 1200,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/flower-pots/flower-pots-06.jpg"
+      ],
+      "description": "A potted arrangement of crochet blooms, styled to sit pretty on a shelf, desk, or windowsill all year round.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 16,
+      "rating": 4.9,
+      "reviewCount": 48
+    },
+    {
+      "slug": "dreamy-amigurumi-character-025",
+      "name": "Dreamy Amigurumi Character",
+      "category": "characters",
+      "price": 450,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/characters/characters-01.jpg"
+      ],
+      "description": "A one-of-a-kind amigurumi character, stitched stitch by stitch with a face full of personality.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": true,
+      "stock": 0,
+      "rating": 4.6,
+      "reviewCount": 20
+    },
+    {
+      "slug": "little-amigurumi-character-026",
+      "name": "Little Amigurumi Character",
+      "category": "characters",
+      "price": 620,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/characters/characters-02.jpg"
+      ],
+      "description": "A one-of-a-kind amigurumi character, stitched stitch by stitch with a face full of personality.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": true,
+      "isNew": false,
+      "customizable": true,
+      "stock": 23,
+      "rating": 4.6,
+      "reviewCount": 84
+    },
+    {
+      "slug": "cuddly-amigurumi-character-027",
+      "name": "Cuddly Amigurumi Character",
+      "category": "characters",
+      "price": 790,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/characters/characters-03.jpg"
+      ],
+      "description": "A one-of-a-kind amigurumi character, stitched stitch by stitch with a face full of personality.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": true,
+      "isNew": false,
+      "customizable": true,
+      "stock": 8,
+      "rating": 4.6,
+      "reviewCount": 57
+    },
+    {
+      "slug": "cheerful-amigurumi-character-028",
+      "name": "Cheerful Amigurumi Character",
+      "category": "characters",
+      "price": 960,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/characters/characters-04.jpg"
+      ],
+      "description": "A one-of-a-kind amigurumi character, stitched stitch by stitch with a face full of personality.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": true,
+      "isNew": false,
+      "customizable": true,
+      "stock": 0,
+      "rating": 4.8,
+      "reviewCount": 46
+    },
+    {
+      "slug": "whimsical-amigurumi-character-029",
+      "name": "Whimsical Amigurumi Character",
+      "category": "characters",
+      "price": 1130,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/characters/characters-05.jpg"
+      ],
+      "description": "A one-of-a-kind amigurumi character, stitched stitch by stitch with a face full of personality.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": true,
+      "stock": 15,
+      "rating": 4.6,
+      "reviewCount": 27
+    },
+    {
+      "slug": "storybook-amigurumi-character-030",
+      "name": "Storybook Amigurumi Character",
+      "category": "characters",
+      "price": 1300,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/characters/characters-06.jpg"
+      ],
+      "description": "A one-of-a-kind amigurumi character, stitched stitch by stitch with a face full of personality.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": true,
+      "stock": 0,
+      "rating": 4.7,
+      "reviewCount": 46
+    },
+    {
+      "slug": "miniature-mini-toy-031",
+      "name": "Miniature Mini Toy",
+      "category": "mini-toys",
+      "price": 200,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/mini-toys/mini-toys-01.jpg"
+      ],
+      "description": "A small handmade companion, sized perfectly for a bag, desk, or gift box.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": true,
+      "isNew": false,
+      "customizable": false,
+      "stock": 2,
+      "rating": 4.7,
+      "reviewCount": 78
+    },
+    {
+      "slug": "pocket-sized-mini-toy-032",
+      "name": "Pocket-Sized Mini Toy",
+      "category": "mini-toys",
+      "price": 250,
+      "compareAtPrice": 250,
+      "images": [
+        "/images/products/mini-toys/mini-toys-02.jpg"
+      ],
+      "description": "A small handmade companion, sized perfectly for a bag, desk, or gift box.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 0,
+      "rating": 4.9,
+      "reviewCount": 20
+    },
+    {
+      "slug": "wee-mini-toy-033",
+      "name": "Wee Mini Toy",
+      "category": "mini-toys",
+      "price": 300,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/mini-toys/mini-toys-03.jpg"
+      ],
+      "description": "A small handmade companion, sized perfectly for a bag, desk, or gift box.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 0,
+      "rating": 4.6,
+      "reviewCount": 66
+    },
+    {
+      "slug": "little-buddy-mini-toy-034",
+      "name": "Little Buddy Mini Toy",
+      "category": "mini-toys",
+      "price": 350,
+      "compareAtPrice": 350,
+      "images": [
+        "/images/products/mini-toys/mini-toys-04.jpg"
+      ],
+      "description": "A small handmade companion, sized perfectly for a bag, desk, or gift box.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 7,
+      "rating": 4.9,
+      "reviewCount": 75
+    },
+    {
+      "slug": "petite-mini-toy-035",
+      "name": "Petite Mini Toy",
+      "category": "mini-toys",
+      "price": 400,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/mini-toys/mini-toys-05.jpg"
+      ],
+      "description": "A small handmade companion, sized perfectly for a bag, desk, or gift box.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 6,
+      "rating": 4.8,
+      "reviewCount": 34
+    },
+    {
+      "slug": "tiny-mini-toy-036",
+      "name": "Tiny Mini Toy",
+      "category": "mini-toys",
+      "price": 450,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/mini-toys/mini-toys-06.jpg"
+      ],
+      "description": "A small handmade companion, sized perfectly for a bag, desk, or gift box.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 12,
+      "rating": 4.8,
+      "reviewCount": 6
+    },
+    {
+      "slug": "extra-soft-jumbo-toy-038",
+      "name": "Extra-Soft Jumbo Toy",
+      "category": "kids-toys-jumbo",
+      "price": 920,
+      "compareAtPrice": 920,
+      "images": [
+        "/images/products/kids-toys-jumbo/kids-toys-jumbo-02.jpg"
+      ],
+      "description": "An extra-large, extra-huggable crochet toy built for years of play and cuddles.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": true,
+      "stock": 2,
+      "rating": 4.5,
+      "reviewCount": 49
+    },
+    {
+      "slug": "playroom-jumbo-toy-039",
+      "name": "Playroom Jumbo Toy",
+      "category": "kids-toys-jumbo",
+      "price": 1140,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/kids-toys-jumbo/kids-toys-jumbo-03.jpg"
+      ],
+      "description": "An extra-large, extra-huggable crochet toy built for years of play and cuddles.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": true,
+      "stock": 6,
+      "rating": 4.5,
+      "reviewCount": 10
+    },
+    {
+      "slug": "huggable-jumbo-toy-040",
+      "name": "Huggable Jumbo Toy",
+      "category": "kids-toys-jumbo",
+      "price": 1360,
+      "compareAtPrice": 1510,
+      "images": [
+        "/images/products/kids-toys-jumbo/kids-toys-jumbo-04.jpg"
+      ],
+      "description": "An extra-large, extra-huggable crochet toy built for years of play and cuddles.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": true,
+      "stock": 17,
+      "rating": 5.0,
+      "reviewCount": 72
+    },
+    {
+      "slug": "oversized-jumbo-toy-041",
+      "name": "Oversized Jumbo Toy",
+      "category": "kids-toys-jumbo",
+      "price": 1580,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/kids-toys-jumbo/kids-toys-jumbo-05.jpg"
+      ],
+      "description": "An extra-large, extra-huggable crochet toy built for years of play and cuddles.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": true,
+      "stock": 19,
+      "rating": 4.5,
+      "reviewCount": 34
+    },
+    {
+      "slug": "giant-jumbo-toy-042",
+      "name": "Giant Jumbo Toy",
+      "category": "kids-toys-jumbo",
+      "price": 1800,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/kids-toys-jumbo/kids-toys-jumbo-06.jpg"
+      ],
+      "description": "An extra-large, extra-huggable crochet toy built for years of play and cuddles.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": true,
+      "stock": 21,
+      "rating": 4.9,
+      "reviewCount": 77
+    },
+    {
+      "slug": "soft-plushie-043",
+      "name": "Soft Plushie",
+      "category": "plushies",
+      "price": 600,
+      "compareAtPrice": 750,
+      "images": [
+        "/images/products/plushies/plushies-01.jpg"
+      ],
+      "description": "A soft, weighted plushie made with premium yarn — gentle on skin and built to be loved for years.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": true,
+      "isNew": false,
+      "customizable": true,
+      "stock": 18,
+      "rating": 4.6,
+      "reviewCount": 6
+    },
+    {
+      "slug": "cozy-plushie-044",
+      "name": "Cozy Plushie",
+      "category": "plushies",
+      "price": 820,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/plushies/plushies-02.jpg"
+      ],
+      "description": "A soft, weighted plushie made with premium yarn — gentle on skin and built to be loved for years.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": true,
+      "customizable": true,
+      "stock": 19,
+      "rating": 5.0,
+      "reviewCount": 21
+    },
+    {
+      "slug": "dreamy-plushie-045",
+      "name": "Dreamy Plushie",
+      "category": "plushies",
+      "price": 1050,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/plushies/plushies-03.jpg"
+      ],
+      "description": "A soft, weighted plushie made with premium yarn — gentle on skin and built to be loved for years.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": false,
+      "isNew": true,
+      "customizable": true,
+      "stock": 15,
+      "rating": 5.0,
+      "reviewCount": 57
+    },
+    {
+      "slug": "snuggle-plushie-046",
+      "name": "Snuggle Plushie",
+      "category": "plushies",
+      "price": 1270,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/plushies/plushies-04.jpg"
+      ],
+      "description": "A soft, weighted plushie made with premium yarn — gentle on skin and built to be loved for years.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": true,
+      "customizable": true,
+      "stock": 0,
+      "rating": 4.6,
+      "reviewCount": 59
+    },
+    {
+      "slug": "sweet-heart-keychain-048",
+      "name": "Sweet Heart Keychain",
+      "category": "keychains",
+      "price": 150,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/keychains/keychains-01.jpg"
+      ],
+      "description": "A tiny handmade keychain that adds a handcrafted touch to your keys, bag, or backpack.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": true,
+      "stock": 22,
+      "rating": 4.9,
+      "reviewCount": 84
+    },
+    {
+      "slug": "fruit-keychain-049",
+      "name": "Fruit Keychain",
+      "category": "keychains",
+      "price": 200,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/keychains/keychains-02.jpg"
+      ],
+      "description": "A tiny handmade keychain that adds a handcrafted touch to your keys, bag, or backpack.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": true,
+      "isNew": false,
+      "customizable": true,
+      "stock": 22,
+      "rating": 4.9,
+      "reviewCount": 84
+    },
+    {
+      "slug": "mini-bloom-keychain-050",
+      "name": "Mini Bloom Keychain",
+      "category": "keychains",
+      "price": 250,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/keychains/keychains-03.jpg"
+      ],
+      "description": "A tiny handmade keychain that adds a handcrafted touch to your keys, bag, or backpack.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": true,
+      "isNew": false,
+      "customizable": true,
+      "stock": 0,
+      "rating": 4.7,
+      "reviewCount": 46
+    },
+    {
+      "slug": "star-keychain-051",
+      "name": "Star Keychain",
+      "category": "keychains",
+      "price": 300,
+      "compareAtPrice": 300,
+      "images": [
+        "/images/products/keychains/keychains-04.jpg"
+      ],
+      "description": "A tiny handmade keychain that adds a handcrafted touch to your keys, bag, or backpack.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": true,
+      "isNew": false,
+      "customizable": true,
+      "stock": 15,
+      "rating": 4.6,
+      "reviewCount": 17
+    },
+    {
+      "slug": "bunny-keychain-052",
+      "name": "Bunny Keychain",
+      "category": "keychains",
+      "price": 350,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/keychains/keychains-05.jpg"
+      ],
+      "description": "A tiny handmade keychain that adds a handcrafted touch to your keys, bag, or backpack.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": true,
+      "customizable": true,
+      "stock": 20,
+      "rating": 4.6,
+      "reviewCount": 57
+    },
+    {
+      "slug": "strawberry-keychain-053",
+      "name": "Strawberry Keychain",
+      "category": "keychains",
+      "price": 400,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/keychains/keychains-06.jpg"
+      ],
+      "description": "A tiny handmade keychain that adds a handcrafted touch to your keys, bag, or backpack.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": true,
+      "stock": 23,
+      "rating": 5.0,
+      "reviewCount": 20
+    },
+    {
+      "slug": "phone-charm-charm-054",
+      "name": "Phone Charm Charm",
+      "category": "charms",
+      "price": 130,
+      "compareAtPrice": 280,
+      "images": [
+        "/images/products/charms/charms-01.jpg"
+      ],
+      "description": "A delicate crochet charm, made to clip onto bags, phones, or bracelets for a personal finishing touch.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": true,
+      "isNew": true,
+      "customizable": false,
+      "stock": 7,
+      "rating": 4.8,
+      "reviewCount": 78
+    },
+    {
+      "slug": "zipper-charm-charm-055",
+      "name": "Zipper Charm Charm",
+      "category": "charms",
+      "price": 160,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/charms/charms-02.jpg"
+      ],
+      "description": "A delicate crochet charm, made to clip onto bags, phones, or bracelets for a personal finishing touch.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": true,
+      "isNew": false,
+      "customizable": false,
+      "stock": 0,
+      "rating": 5.0,
+      "reviewCount": 18
+    },
+    {
+      "slug": "bag-charm-charm-056",
+      "name": "Bag Charm Charm",
+      "category": "charms",
+      "price": 200,
+      "compareAtPrice": 300,
+      "images": [
+        "/images/products/charms/charms-03.jpg"
+      ],
+      "description": "A delicate crochet charm, made to clip onto bags, phones, or bracelets for a personal finishing touch.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": true,
+      "customizable": false,
+      "stock": 0,
+      "rating": 4.7,
+      "reviewCount": 51
+    },
+    {
+      "slug": "charm-bracelet-charm-057",
+      "name": "Charm Bracelet Charm",
+      "category": "charms",
+      "price": 230,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/charms/charms-04.jpg"
+      ],
+      "description": "A delicate crochet charm, made to clip onto bags, phones, or bracelets for a personal finishing touch.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 21,
+      "rating": 4.6,
+      "reviewCount": 64
+    },
+    {
+      "slug": "phone-charm-charm-058",
+      "name": "Phone Charm Charm",
+      "category": "charms",
+      "price": 260,
+      "compareAtPrice": 260,
+      "images": [
+        "/images/products/charms/charms-05.jpg"
+      ],
+      "description": "A delicate crochet charm, made to clip onto bags, phones, or bracelets for a personal finishing touch.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 22,
+      "rating": 4.7,
+      "reviewCount": 16
+    },
+    {
+      "slug": "zipper-charm-charm-059",
+      "name": "Zipper Charm Charm",
+      "category": "charms",
+      "price": 300,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/charms/charms-06.jpg"
+      ],
+      "description": "A delicate crochet charm, made to clip onto bags, phones, or bracelets for a personal finishing touch.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 5,
+      "rating": 4.6,
+      "reviewCount": 80
+    },
+    {
+      "slug": "little-cottage-fridge-magnet-060",
+      "name": "Little Cottage Fridge Magnet",
+      "category": "crochet-magnets",
+      "price": 150,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/crochet-magnets/crochet-magnets-01.jpg"
+      ],
+      "description": "A charming handmade magnet to bring a little warmth to any fridge or noticeboard.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 4,
+      "rating": 4.8,
+      "reviewCount": 61
+    },
+    {
+      "slug": "flower-fridge-magnet-061",
+      "name": "Flower Fridge Magnet",
+      "category": "crochet-magnets",
+      "price": 250,
+      "compareAtPrice": 250,
+      "images": [
+        "/images/products/crochet-magnets/crochet-magnets-02.jpg"
+      ],
+      "description": "A charming handmade magnet to bring a little warmth to any fridge or noticeboard.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": true,
+      "customizable": false,
+      "stock": 10,
+      "rating": 4.5,
+      "reviewCount": 51
+    },
+    {
+      "slug": "pearl-trim-hair-accessory-062",
+      "name": "Pearl Trim Hair Accessory",
+      "category": "hair-accessories",
+      "price": 150,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/hair-accessories/hair-accessories-01.jpg"
+      ],
+      "description": "A handmade hair accessory finished with delicate crochet detailing for an everyday touch of charm.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": true,
+      "stock": 0,
+      "rating": 4.7,
+      "reviewCount": 69
+    },
+    {
+      "slug": "daisy-chain-hair-accessory-063",
+      "name": "Daisy Chain Hair Accessory",
+      "category": "hair-accessories",
+      "price": 220,
+      "compareAtPrice": 220,
+      "images": [
+        "/images/products/hair-accessories/hair-accessories-02.jpg"
+      ],
+      "description": "A handmade hair accessory finished with delicate crochet detailing for an everyday touch of charm.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": true,
+      "stock": 22,
+      "rating": 4.9,
+      "reviewCount": 38
+    },
+    {
+      "slug": "butterfly-hair-accessory-064",
+      "name": "Butterfly Hair Accessory",
+      "category": "hair-accessories",
+      "price": 290,
+      "compareAtPrice": 290,
+      "images": [
+        "/images/products/hair-accessories/hair-accessories-03.jpg"
+      ],
+      "description": "A handmade hair accessory finished with delicate crochet detailing for an everyday touch of charm.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": true,
+      "stock": 0,
+      "rating": 4.6,
+      "reviewCount": 49
+    },
+    {
+      "slug": "flower-clip-hair-accessory-065",
+      "name": "Flower Clip Hair Accessory",
+      "category": "hair-accessories",
+      "price": 360,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/hair-accessories/hair-accessories-04.jpg"
+      ],
+      "description": "A handmade hair accessory finished with delicate crochet detailing for an everyday touch of charm.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": true,
+      "stock": 14,
+      "rating": 4.9,
+      "reviewCount": 15
+    },
+    {
+      "slug": "bow-hair-accessory-066",
+      "name": "Bow Hair Accessory",
+      "category": "hair-accessories",
+      "price": 430,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/hair-accessories/hair-accessories-05.jpg"
+      ],
+      "description": "A handmade hair accessory finished with delicate crochet detailing for an everyday touch of charm.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": true,
+      "stock": 17,
+      "rating": 5.0,
+      "reviewCount": 69
+    },
+    {
+      "slug": "scrunchie-hair-accessory-067",
+      "name": "Scrunchie Hair Accessory",
+      "category": "hair-accessories",
+      "price": 500,
+      "compareAtPrice": 600,
+      "images": [
+        "/images/products/hair-accessories/hair-accessories-06.jpg"
+      ],
+      "description": "A handmade hair accessory finished with delicate crochet detailing for an everyday touch of charm.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": true,
+      "stock": 11,
+      "rating": 4.8,
+      "reviewCount": 52
+    },
+    {
+      "slug": "botanical-resin-frame-068",
+      "name": "Botanical Resin Frame",
+      "category": "resin-frames",
+      "price": 500,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/resin-frames/resin-frames-01.jpg"
+      ],
+      "description": "A resin-cast photo frame bordered with handmade crochet florals — a lasting way to hold a favourite memory.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": true,
+      "stock": 20,
+      "rating": 4.7,
+      "reviewCount": 55
+    },
+    {
+      "slug": "keepsake-resin-frame-069",
+      "name": "Keepsake Resin Frame",
+      "category": "resin-frames",
+      "price": 660,
+      "compareAtPrice": 660,
+      "images": [
+        "/images/products/resin-frames/resin-frames-02.jpg"
+      ],
+      "description": "A resin-cast photo frame bordered with handmade crochet florals — a lasting way to hold a favourite memory.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": false,
+      "isNew": true,
+      "customizable": true,
+      "stock": 5,
+      "rating": 4.7,
+      "reviewCount": 67
+    },
+    {
+      "slug": "golden-rim-resin-frame-070",
+      "name": "Golden Rim Resin Frame",
+      "category": "resin-frames",
+      "price": 820,
+      "compareAtPrice": 820,
+      "images": [
+        "/images/products/resin-frames/resin-frames-03.jpg"
+      ],
+      "description": "A resin-cast photo frame bordered with handmade crochet florals — a lasting way to hold a favourite memory.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": false,
+      "isNew": true,
+      "customizable": true,
+      "stock": 3,
+      "rating": 4.8,
+      "reviewCount": 20
+    },
+    {
+      "slug": "blush-edge-resin-frame-071",
+      "name": "Blush Edge Resin Frame",
+      "category": "resin-frames",
+      "price": 980,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/resin-frames/resin-frames-04.jpg"
+      ],
+      "description": "A resin-cast photo frame bordered with handmade crochet florals — a lasting way to hold a favourite memory.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": true,
+      "stock": 22,
+      "rating": 4.6,
+      "reviewCount": 62
+    },
+    {
+      "slug": "ivory-bordered-resin-frame-072",
+      "name": "Ivory Bordered Resin Frame",
+      "category": "resin-frames",
+      "price": 1140,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/resin-frames/resin-frames-05.jpg"
+      ],
+      "description": "A resin-cast photo frame bordered with handmade crochet florals — a lasting way to hold a favourite memory.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": true,
+      "isNew": false,
+      "customizable": true,
+      "stock": 6,
+      "rating": 4.7,
+      "reviewCount": 73
+    },
+    {
+      "slug": "pressed-bloom-resin-frame-073",
+      "name": "Pressed Bloom Resin Frame",
+      "category": "resin-frames",
+      "price": 1300,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/resin-frames/resin-frames-06.jpg"
+      ],
+      "description": "A resin-cast photo frame bordered with handmade crochet florals — a lasting way to hold a favourite memory.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": true,
+      "stock": 10,
+      "rating": 4.8,
+      "reviewCount": 45
+    },
+    {
+      "slug": "botanical-string-art-074",
+      "name": "Botanical String Art",
+      "category": "string-arts",
+      "price": 600,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/string-arts/string-arts-01.jpg"
+      ],
+      "description": "Hand-strung thread art on wood, designed as a soft, textural statement piece for any wall.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 0,
+      "rating": 4.6,
+      "reviewCount": 37
+    },
+    {
+      "slug": "bloom-string-art-075",
+      "name": "Bloom String Art",
+      "category": "string-arts",
+      "price": 900,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/string-arts/string-arts-02.jpg"
+      ],
+      "description": "Hand-strung thread art on wood, designed as a soft, textural statement piece for any wall.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": true,
+      "customizable": false,
+      "stock": 19,
+      "rating": 4.5,
+      "reviewCount": 39
+    },
+    {
+      "slug": "constellation-string-art-076",
+      "name": "Constellation String Art",
+      "category": "string-arts",
+      "price": 1200,
+      "compareAtPrice": 1200,
+      "images": [
+        "/images/products/string-arts/string-arts-03.jpg"
+      ],
+      "description": "Hand-strung thread art on wood, designed as a soft, textural statement piece for any wall.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 17,
+      "rating": 5.0,
+      "reviewCount": 26
+    },
+    {
+      "slug": "heart-string-art-077",
+      "name": "Heart String Art",
+      "category": "string-arts",
+      "price": 1500,
+      "compareAtPrice": 1500,
+      "images": [
+        "/images/products/string-arts/string-arts-04.jpg"
+      ],
+      "description": "Hand-strung thread art on wood, designed as a soft, textural statement piece for any wall.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": true,
+      "isNew": true,
+      "customizable": false,
+      "stock": 21,
+      "rating": 4.7,
+      "reviewCount": 23
+    },
+    {
+      "slug": "little-bow-pouch-078",
+      "name": "Little Bow Pouch",
+      "category": "pouchcase",
+      "price": 300,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/pouchcase/pouchcase-01.jpg"
+      ],
+      "description": "A hand-crocheted pouch, roomy enough for everyday essentials and finished with a sweet handmade edge.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 7,
+      "rating": 4.8,
+      "reviewCount": 82
+    },
+    {
+      "slug": "daisy-pouch-079",
+      "name": "Daisy Pouch",
+      "category": "pouchcase",
+      "price": 400,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/pouchcase/pouchcase-02.jpg"
+      ],
+      "description": "A hand-crocheted pouch, roomy enough for everyday essentials and finished with a sweet handmade edge.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": true,
+      "isNew": true,
+      "customizable": false,
+      "stock": 20,
+      "rating": 4.8,
+      "reviewCount": 65
+    },
+    {
+      "slug": "scallop-edge-pouch-080",
+      "name": "Scallop-Edge Pouch",
+      "category": "pouchcase",
+      "price": 500,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/pouchcase/pouchcase-03.jpg"
+      ],
+      "description": "A hand-crocheted pouch, roomy enough for everyday essentials and finished with a sweet handmade edge.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": true,
+      "isNew": false,
+      "customizable": false,
+      "stock": 23,
+      "rating": 4.8,
+      "reviewCount": 44
+    },
+    {
+      "slug": "gingham-pouch-081",
+      "name": "Gingham Pouch",
+      "category": "pouchcase",
+      "price": 600,
+      "compareAtPrice": 600,
+      "images": [
+        "/images/products/pouchcase/pouchcase-04.jpg"
+      ],
+      "description": "A hand-crocheted pouch, roomy enough for everyday essentials and finished with a sweet handmade edge.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": true,
+      "isNew": false,
+      "customizable": false,
+      "stock": 25,
+      "rating": 4.7,
+      "reviewCount": 47
+    },
+    {
+      "slug": "petal-pouch-082",
+      "name": "Petal Pouch",
+      "category": "pouchcase",
+      "price": 700,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/pouchcase/pouchcase-05.jpg"
+      ],
+      "description": "A hand-crocheted pouch, roomy enough for everyday essentials and finished with a sweet handmade edge.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 10,
+      "rating": 4.6,
+      "reviewCount": 62
+    },
+    {
+      "slug": "pastel-stripe-pouch-083",
+      "name": "Pastel Stripe Pouch",
+      "category": "pouchcase",
+      "price": 800,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/pouchcase/pouchcase-06.jpg"
+      ],
+      "description": "A hand-crocheted pouch, roomy enough for everyday essentials and finished with a sweet handmade edge.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 18,
+      "rating": 5.0,
+      "reviewCount": 64
+    },
+    {
+      "slug": "woven-macrame-bag-084",
+      "name": "Woven Macrame Bag",
+      "category": "macrame-bag",
+      "price": 899,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/macrame-bag/macrame-bag-01.jpg"
+      ],
+      "description": "A sturdy, hand-knotted macrame bag built for everyday carry with an artisanal edge.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": true,
+      "stock": 13,
+      "rating": 4.5,
+      "reviewCount": 56
+    },
+    {
+      "slug": "made-for-you-custom-gift-085",
+      "name": "Photo-Inspired Keepsake Custom Gift",
+      "category": "customised-gifts",
+      "price": 400,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/customised-gifts/customised-gifts-img1497.jpg",
+        "/images/products/customised-gifts/customised-gifts-img1503.jpg"
+      ],
+      "description": "Custom photo-inspired handcrafted crochet piece. Includes multi-angle detail views.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": true,
+      "customizable": true,
+      "stock": 7,
+      "rating": 4.9,
+      "reviewCount": 42
+    },
+    {
+      "slug": "keepsake-custom-gift-088",
+      "name": "Keepsake Custom Gift",
+      "category": "customised-gifts",
+      "price": 1060,
+      "compareAtPrice": 1060,
+      "images": [
+        "/images/products/customised-gifts/customised-gifts-04.jpg"
+      ],
+      "description": "A made-to-order gift, personalised to the smallest detail and crocheted just for the person you have in mind.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": true,
+      "stock": 12,
+      "rating": 4.7,
+      "reviewCount": 72
+    },
+    {
+      "slug": "initial-custom-gift-089",
+      "name": "Initial Custom Gift",
+      "category": "customised-gifts",
+      "price": 1280,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/customised-gifts/customised-gifts-05.jpg"
+      ],
+      "description": "A made-to-order gift, personalised to the smallest detail and crocheted just for the person you have in mind.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": true,
+      "stock": 23,
+      "rating": 4.8,
+      "reviewCount": 15
+    },
+    {
+      "slug": "monogram-custom-gift-090",
+      "name": "Monogram Custom Gift",
+      "category": "customised-gifts",
+      "price": 1500,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/customised-gifts/customised-gifts-06.jpg"
+      ],
+      "description": "A made-to-order gift, personalised to the smallest detail and crocheted just for the person you have in mind.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": true,
+      "stock": 18,
+      "rating": 4.9,
+      "reviewCount": 17
+    },
+    {
+      "slug": "anniversary-occasion-piece-091",
+      "name": "Anniversary Occasion Piece",
+      "category": "event-specific",
+      "price": 350,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/event-specific/event-specific-01.jpg"
+      ],
+      "description": "A handmade piece created for a specific celebration, designed to fit the mood of your event perfectly.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": true,
+      "stock": 7,
+      "rating": 5.0,
+      "reviewCount": 37
+    },
+    {
+      "slug": "baby-shower-occasion-piece-092",
+      "name": "Baby Shower Occasion Piece",
+      "category": "event-specific",
+      "price": 570,
+      "compareAtPrice": 670,
+      "images": [
+        "/images/products/event-specific/event-specific-02.jpg"
+      ],
+      "description": "A handmade piece created for a specific celebration, designed to fit the mood of your event perfectly.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": true,
+      "isNew": false,
+      "customizable": true,
+      "stock": 5,
+      "rating": 4.8,
+      "reviewCount": 41
+    },
+    {
+      "slug": "wedding-favour-occasion-piece-094",
+      "name": "Wedding Favour Occasion Piece",
+      "category": "event-specific",
+      "price": 1000,
+      "compareAtPrice": 1000,
+      "images": [
+        "/images/products/event-specific/event-specific-04.jpg"
+      ],
+      "description": "A handmade piece created for a specific celebration, designed to fit the mood of your event perfectly.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": true,
+      "stock": 18,
+      "rating": 4.6,
+      "reviewCount": 33
+    },
+    {
+      "slug": "mini-gift-return-gift-095",
+      "name": "Mini Gift Return Gift",
+      "category": "return-gifts",
+      "price": 100,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/return-gifts/return-gifts-01.jpg"
+      ],
+      "description": "A budget-friendly handmade favour, perfect in bulk for birthdays and celebrations.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 10,
+      "rating": 4.7,
+      "reviewCount": 45
+    },
+    {
+      "slug": "party-favour-return-gift-096",
+      "name": "Party Favour Return Gift",
+      "category": "return-gifts",
+      "price": 250,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/return-gifts/return-gifts-02.jpg"
+      ],
+      "description": "A budget-friendly handmade favour, perfect in bulk for birthdays and celebrations.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": true,
+      "customizable": false,
+      "stock": 9,
+      "rating": 5.0,
+      "reviewCount": 49
+    },
+    {
+      "slug": "wrap-upgrade-add-on-097",
+      "name": "Wrap Upgrade Add-On",
+      "category": "add-ons",
+      "price": 100,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/add-ons/add-ons-01.jpg"
+      ],
+      "description": "A small finishing touch you can add to any order to make it feel extra special.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 3,
+      "rating": 4.7,
+      "reviewCount": 73
+    },
+    {
+      "slug": "ribbon-trim-add-on-098",
+      "name": "Ribbon Trim Add-On",
+      "category": "add-ons",
+      "price": 150,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/add-ons/add-ons-02.jpg"
+      ],
+      "description": "A small finishing touch you can add to any order to make it feel extra special.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 7,
+      "rating": 4.9,
+      "reviewCount": 53
+    },
+    {
+      "slug": "care-card-add-on-099",
+      "name": "Care Card Add-On",
+      "category": "add-ons",
+      "price": 200,
+      "compareAtPrice": 200,
+      "images": [
+        "/images/products/add-ons/add-ons-03.jpg"
+      ],
+      "description": "A small finishing touch you can add to any order to make it feel extra special.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 18,
+      "rating": 4.6,
+      "reviewCount": 72
+    },
+    {
+      "slug": "gift-tag-add-on-100",
+      "name": "Gift Tag Add-On",
+      "category": "add-ons",
+      "price": 250,
+      "compareAtPrice": 400,
+      "images": [
+        "/images/products/add-ons/add-ons-04.jpg"
+      ],
+      "description": "A small finishing touch you can add to any order to make it feel extra special.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": false,
+      "isNew": true,
+      "customizable": false,
+      "stock": 0,
+      "rating": 4.9,
+      "reviewCount": 6
+    },
+    {
+      "slug": "colour-pop-bead-beaded-piece-101",
+      "name": "Colour-Pop Bead Beaded Piece",
+      "category": "beads",
+      "price": 150,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/beads/beads-01.jpg"
+      ],
+      "description": "Delicate beadwork paired with crochet for a little extra sparkle.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 0,
+      "rating": 4.8,
+      "reviewCount": 16
+    },
+    {
+      "slug": "pearl-trim-beaded-piece-102",
+      "name": "Pearl Trim Beaded Piece",
+      "category": "beads",
+      "price": 190,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/beads/beads-02.jpg"
+      ],
+      "description": "Delicate beadwork paired with crochet for a little extra sparkle.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": true,
+      "customizable": false,
+      "stock": 15,
+      "rating": 4.7,
+      "reviewCount": 17
+    },
+    {
+      "slug": "seed-bead-beaded-piece-103",
+      "name": "Seed Bead Beaded Piece",
+      "category": "beads",
+      "price": 230,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/beads/beads-03.jpg"
+      ],
+      "description": "Delicate beadwork paired with crochet for a little extra sparkle.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 0,
+      "rating": 5.0,
+      "reviewCount": 45
+    },
+    {
+      "slug": "crystal-accent-beaded-piece-104",
+      "name": "Crystal Accent Beaded Piece",
+      "category": "beads",
+      "price": 270,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/beads/beads-04.jpg"
+      ],
+      "description": "Delicate beadwork paired with crochet for a little extra sparkle.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 5,
+      "rating": 4.8,
+      "reviewCount": 19
+    },
+    {
+      "slug": "colour-pop-bead-beaded-piece-105",
+      "name": "Colour-Pop Bead Beaded Piece",
+      "category": "beads",
+      "price": 310,
+      "compareAtPrice": 410,
+      "images": [
+        "/images/products/beads/beads-05.jpg"
+      ],
+      "description": "Delicate beadwork paired with crochet for a little extra sparkle.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 2,
+      "rating": 4.9,
+      "reviewCount": 66
+    },
+    {
+      "slug": "pearl-trim-beaded-piece-106",
+      "name": "Pearl Trim Beaded Piece",
+      "category": "beads",
+      "price": 350,
+      "compareAtPrice": null,
+      "images": [
+        "/images/products/beads/beads-06.jpg"
+      ],
+      "description": "Delicate beadwork paired with crochet for a little extra sparkle.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": false,
+      "bestseller": false,
+      "isNew": false,
+      "customizable": false,
+      "stock": 14,
+      "rating": 4.6,
+      "reviewCount": 54
+    },
+    {
+      "slug": "personalised-flower-girl-crochet-doll",
+      "name": "Personalised Flower Girl Crochet Doll",
+      "category": "customised-gifts",
+      "price": 840,
+      "compareAtPrice": 1040,
+      "images": [
+        "/images/products/customised-gifts/customised-gifts-img1153.jpg",
+        "/images/products/customised-gifts/customised-gifts-img1195.jpg"
+      ],
+      "description": "Handcrafted crochet girl doll wearing a pink flower crown and tiered white lace dress. Multi-view pictures show front face detail and rear bow arrangement.",
+      "materials": "Premium acrylic/cotton-blend yarn, finished by hand",
+      "care": "Spot clean with a damp cloth. Keep away from direct heat and moisture. Reshape gently after handling.",
+      "featured": true,
+      "bestseller": true,
+      "isNew": false,
+      "customizable": true,
+      "stock": 4,
+      "rating": 4.9,
+      "reviewCount": 68
+    }
+  ]
+}
