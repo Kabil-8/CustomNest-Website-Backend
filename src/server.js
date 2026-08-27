@@ -28,11 +28,27 @@ const app = express();
 app.use(helmet());
 
 // CORS is locked to the configured storefront origin only, with credentials
-// enabled so the httpOnly auth cookie can be sent.
+const allowedOrigins = [
+  'https://thecustomnest.vercel.app',
+  'http://localhost:5173',
+  ...(process.env.CLIENT_ORIGIN
+    ? process.env.CLIENT_ORIGIN.split(',').map((origin) => origin.trim().replace(/\/$/, ''))
+    : []),
+];
+
 app.use(
   cors({
-    origin: process.env.CLIENT_ORIGIN?.split(',') ?? 'https://thecustomnest.vercel.app/',
+    origin: (origin, callback) => {
+      // Allow requests without an Origin header (Postman, server-to-server, etc.)
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error(`CORS: Origin ${origin} not allowed`));
+      }
+    },
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   })
 );
 
