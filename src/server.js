@@ -31,7 +31,7 @@ app.use(helmet());
 // enabled so the httpOnly auth cookie can be sent.
 app.use(
   cors({
-    origin: process.env.CLIENT_ORIGIN?.split(',') ?? 'http://localhost:5173',
+    origin: process.env.CLIENT_ORIGIN?.split(',') ?? 'https://thecustomnest.vercel.app/',
     credentials: true,
   })
 );
