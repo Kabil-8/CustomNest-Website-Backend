@@ -56,7 +56,7 @@ export async function createOrder(req, res, next) {
       };
     });
 
-    const shipping = subtotal >= 999 ? 0 : 79;
+    const shipping = subtotal >= 999 ? 0 : 50;
     const total = subtotal + shipping;
     const orderNumber = `TCN${Math.floor(100000 + Math.random() * 900000)}`;
 
@@ -69,11 +69,8 @@ export async function createOrder(req, res, next) {
       shipping,
       discount: 0,
       total,
-      paymentMethod: input.paymentMethod,
-      // In production this flips to 'Paid' only after the payment
-      // provider's webhook confirms the charge server-side — never based on
-      // a client-supplied "success" flag.
-      paymentStatus: input.paymentMethod === 'upi-qr' ? 'Pending' : 'Paid',
+      paymentMethod: input.paymentMethod || 'upi-qr',
+      paymentStatus: 'Pending',
     });
 
     // Decrement stock only after the order is successfully created.
@@ -238,6 +235,7 @@ export async function uploadPaymentScreenshot(req, res, next) {
 
       // Save the screenshot path to the order
       order.paymentScreenshot = `/uploads/${req.file.filename}`;
+      order.paymentStatus = 'Pending Verification';
       await order.save();
 
       const orderObj = order.toObject();
@@ -247,6 +245,17 @@ export async function uploadPaymentScreenshot(req, res, next) {
 
       res.json({ order: orderObj, message: 'Screenshot uploaded successfully' });
     });
+  } catch (err) {
+    next(err);
+  }
+}
+
+// Admin: delete order
+export async function deleteOrder(req, res, next) {
+  try {
+    const order = await Order.findByIdAndDelete(req.params.id);
+    if (!order) throw new AppError('Order not found.', 404);
+    res.status(204).send();
   } catch (err) {
     next(err);
   }

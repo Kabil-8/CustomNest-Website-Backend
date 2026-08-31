@@ -130,6 +130,15 @@ export async function createProduct(req, res, next) {
     if (data.category) {
       data.category = await resolveCategoryId(data.category);
     }
+    if (data.yarnType === 'normal' && data.normalPrice !== undefined && data.normalPrice !== null) {
+      data.price = Number(data.normalPrice);
+    } else if (data.yarnType === 'acrylic' && data.acrylicPrice !== undefined && data.acrylicPrice !== null) {
+      data.price = Number(data.acrylicPrice);
+    } else if (data.yarnType === 'both') {
+      if (data.normalPrice !== undefined && data.normalPrice !== null && (!data.price || data.price === 0)) {
+        data.price = Number(data.normalPrice);
+      }
+    }
     const created = await Product.create(data);
     const product = await Product.findById(created._id)
       .populate('category', 'name slug collection')
@@ -145,6 +154,15 @@ export async function updateProduct(req, res, next) {
     const data = { ...req.body };
     if (data.category) {
       data.category = await resolveCategoryId(data.category);
+    }
+    if (data.yarnType === 'normal' && data.normalPrice !== undefined && data.normalPrice !== null) {
+      data.price = Number(data.normalPrice);
+    } else if (data.yarnType === 'acrylic' && data.acrylicPrice !== undefined && data.acrylicPrice !== null) {
+      data.price = Number(data.acrylicPrice);
+    } else if (data.yarnType === 'both') {
+      if (data.normalPrice !== undefined && data.normalPrice !== null && (!data.price || data.price === 0)) {
+        data.price = Number(data.normalPrice);
+      }
     }
     const product = await Product.findByIdAndUpdate(req.params.id, data, { new: true, runValidators: true })
       .populate('category', 'name slug collection')

@@ -5,16 +5,18 @@ import { AppError } from '../middleware/errorHandler.js';
 import { sendWhatsAppNotification, buildCustomOrderMessage, buildCustomOrderAcceptedMessage } from '../utils/whatsapp.js';
 
 const requestSchema = z.object({
-  name:        z.string().min(2),
-  email:       z.string().email(),
-  phone:       z.string().min(6),
-  productType: z.string().min(2),
-  colors:      z.string().optional(),
-  size:        z.string().optional(),
-  quantity:    z.number().int().min(1).default(1),
-  budget:      z.string().optional(),
-  deadline:    z.string().optional(),
-  description: z.string().min(10),
+  name:           z.string().min(2),
+  email:          z.string().email(),
+  phone:          z.string().min(6),
+  productType:    z.string().min(2),
+  colors:         z.string().optional().nullable(),
+  yarnType:       z.string().optional().nullable(),
+  size:           z.string().optional().nullable(),
+  quantity:       z.coerce.number().int().min(1).default(1),
+  budget:         z.string().optional().nullable(),
+  deadline:       z.string().optional().nullable(),
+  description:    z.string().min(10),
+  referenceImage: z.string().optional().nullable(),
 });
 
 // ── Submit (customer, logged in) ──────────────────────────────────────────────
@@ -24,7 +26,7 @@ export async function submitCustomOrder(req, res, next) {
     if (input.email.toLowerCase() !== req.user.email.toLowerCase()) {
       return res.status(400).json({ message: 'The email address must match your account email.' });
     }
-    const referenceImage = req.file ? `/uploads/${req.file.filename}` : undefined;
+    const referenceImage = req.file ? `/uploads/${req.file.filename}` : (input.referenceImage || undefined);
     const request = await CustomOrderRequest.create({
       ...input,
       referenceImage,
@@ -214,7 +216,10 @@ export async function createOrderFromCustomRequest(req, res, next) {
     }).parse(req.body);
 
     const orderNumber = `TCN-C${Math.floor(100000 + Math.random() * 900000)}`;
-    const total = customReq.agreedPrice;
+    const quantity = customReq.quantity ?? 1;
+    const shipping = 50 * quantity;
+    const subtotal = customReq.agreedPrice;
+    const total = subtotal + shipping;
 
     const order = await Order.create({
       orderNumber,
@@ -224,19 +229,19 @@ export async function createOrderFromCustomRequest(req, res, next) {
         product:  null,
         name:     `Custom: ${customReq.productType}`,
         image:    customReq.referenceImage || '/images/products/amigurumi-bunny.jpg',
-        price:    total,
-        quantity: customReq.quantity ?? 1,
+        price:    subtotal,
+        quantity: quantity,
         customization: {
           color:            customReq.colors || '',
           size:             customReq.size   || '',
           specialRequest:   customReq.description,
         },
       }],
-      subtotal:      total,
-      shipping:      0,
+      subtotal:      subtotal,
+      shipping:      shipping,
       discount:      0,
-      total,
-      paymentMethod: 'razorpay',
+      total:         total,
+      paymentMethod: 'upi-qr',
       paymentStatus: 'Pending',
       isCustomOrder: true,
       customOrderId: customReq._id,
@@ -262,4 +267,15 @@ export async function createOrderFromCustomRequest(req, res, next) {
 
     res.status(201).json({ order: orderObj });
   } catch (err) { next(err); }
+}
+
+// ── Admin: delete custom order ────────────────────────────────────────────────
+export async function deleteCustomOrder(req, res, next) {
+  try {
+    const request = await CustomOrderRequest.findByIdAndDelete(req.params.id);
+    if (!request) throw new AppError('Custom order request not found.', 404);
+    res.status(204).send();
+  } catch (err) {
+    next(err);
+  }
 }
