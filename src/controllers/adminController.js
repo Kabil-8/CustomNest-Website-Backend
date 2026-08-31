@@ -9,7 +9,13 @@ import Review from '../models/Review.js';
 export async function getBadgeCounts(_req, res, next) {
   try {
     const [pendingOrders, newCustomOrders, unreadInquiries, pendingReviews] = await Promise.all([
-      Order.countDocuments({ status: { $in: ['Pending', 'Confirmed'] } }),
+      Order.countDocuments({
+        status: { $in: ['Pending', 'Confirmed', 'Processing'] },
+        $or: [
+          { paymentScreenshot: { $exists: true, $nin: [null, ''] } },
+          { paymentStatus: { $in: ['Paid', 'Pending Verification', 'Confirmed'] } },
+        ],
+      }),
       CustomOrderRequest.countDocuments({ status: { $in: ['New', 'In Review'] } }),
       ContactMessage.countDocuments({ status: 'Unread' }),
       Review.countDocuments({ approved: false }),
@@ -38,7 +44,12 @@ export async function listCustomers(_req, res, next) {
 export async function dashboardStats(_req, res, next) {
   try {
     const [orders, customerCount, productCount] = await Promise.all([
-      Order.find(),
+      Order.find({
+        $or: [
+          { paymentScreenshot: { $exists: true, $nin: [null, ''] } },
+          { paymentStatus: { $in: ['Paid', 'Pending Verification', 'Confirmed', 'Processing', 'Shipped', 'Delivered'] } },
+        ],
+      }),
       User.countDocuments({ role: 'customer' }),
       Product.countDocuments(),
     ]);
@@ -46,7 +57,7 @@ export async function dashboardStats(_req, res, next) {
     const totalSales = orders
       .filter((o) => o.status === 'Delivered')
       .reduce((sum, o) => sum + o.total, 0);
-    const pendingOrders = orders.filter((o) => ['Pending', 'Confirmed'].includes(o.status)).length;
+    const pendingOrders = orders.filter((o) => ['Pending', 'Confirmed', 'Processing'].includes(o.status)).length;
     const completedOrders = orders.filter((o) => o.status === 'Delivered').length;
     const lowStock = await Product.find({ stock: { $gt: 0, $lte: 3 } }).limit(10);
 

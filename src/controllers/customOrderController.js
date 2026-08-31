@@ -48,10 +48,12 @@ export async function submitCustomOrder(req, res, next) {
 // ── Admin: list all ───────────────────────────────────────────────────────────
 export async function listCustomOrders(_req, res, next) {
   try {
-    const requests = await CustomOrderRequest.find().sort({ createdAt: -1 });
-    // Ensure proper ID mapping for frontend
-    const requestsWithId = requests.map(req => {
-      const obj = req.toObject();
+    const requests = await CustomOrderRequest.find()
+      .populate('linkedOrderId', 'paymentScreenshot paymentStatus orderNumber total')
+      .sort({ createdAt: -1 });
+
+    const requestsWithId = requests.map(reqItem => {
+      const obj = reqItem.toObject();
       obj.id = obj._id;
       delete obj._id;
       delete obj.__v;
@@ -64,13 +66,23 @@ export async function listCustomOrders(_req, res, next) {
 // ── Customer: list mine ───────────────────────────────────────────────────────
 export async function listMyCustomOrders(req, res, next) {
   try {
-    const requests = await CustomOrderRequest.find({ user: req.user._id }).sort({ createdAt: -1 });
-    // Ensure proper ID mapping for frontend
-    const requestsWithId = requests.map(req => {
-      const obj = req.toObject();
+    const requests = await CustomOrderRequest.find({ user: req.user._id })
+      .populate('linkedOrderId', 'paymentScreenshot paymentStatus orderNumber total')
+      .sort({ createdAt: -1 });
+
+    const requestsWithId = requests.map(reqItem => {
+      const obj = reqItem.toObject();
       obj.id = obj._id;
       delete obj._id;
       delete obj.__v;
+
+      // If linkedOrderId has no payment screenshot and is pending, treat as not finalized yet
+      if (obj.linkedOrderId && typeof obj.linkedOrderId === 'object') {
+        const ord = obj.linkedOrderId;
+        if (!ord.paymentScreenshot && ord.paymentStatus === 'Pending') {
+          obj.linkedOrderId = null;
+        }
+      }
       return obj;
     });
     res.json({ requests: requestsWithId });
@@ -88,18 +100,19 @@ export async function updateCustomOrderStatus(req, res, next) {
       .parse(req.body);
 
     const updateData = { status };
-    if (agreedPrice !== undefined) updateData.agreedPrice = agreedPrice;
+    if (agreedPrice !== undefined) {
+      updateData.agreedPrice = agreedPrice;
+    }
 
     const request = await CustomOrderRequest.findByIdAndUpdate(
       req.params.id,
       updateData,
       { new: true }
     );
-    if (!request) throw new AppError('Request not found.', 404);
+    if (!request) throw new AppError('Custom order request not found.', 404);
 
     if (status === 'Accepted' && request.agreedPrice) {
-      const acceptedMessage = buildCustomOrderAcceptedMessage(request);
-      sendWhatsAppNotification(acceptedMessage).catch(() => {});
+      sendWhatsAppNotification(buildCustomOrderAcceptedMessage(request, request.agreedPrice)).catch(() => {});
     }
     
     // Ensure proper ID mapping for frontend
@@ -112,43 +125,25 @@ export async function updateCustomOrderStatus(req, res, next) {
   } catch (err) { next(err); }
 }
 
-// ── Admin: send message (automatically updates status + optionally set agreedPrice) ──
+// ── Admin: reply / send message in thread ─────────────────────────────────────
 export async function adminSendMessage(req, res, next) {
   try {
-    const { text, status, agreedPrice } = z.object({
-      text:        z.string().min(1, 'Message cannot be empty.'),
-      status:      z.enum(['New', 'In Review', 'Quoted', 'Accepted', 'Declined']).optional(),
-      agreedPrice: z.number().min(0).optional(),
+    const { text, status } = z.object({
+      text:   z.string().min(1),
+      status: z.enum(['New', 'In Review', 'Quoted', 'Accepted', 'Declined']).optional(),
     }).parse(req.body);
 
-    const $set = {};
-    // AUTO-UPDATE: When admin sends a message, automatically update status to "In Review"
-    // unless a specific status is being set
-    if (status) {
-      $set.status = status;
-    } else {
-      // Get current status first to avoid overriding already advanced statuses
-      const currentRequest = await CustomOrderRequest.findById(req.params.id);
-      if (currentRequest && currentRequest.status === 'New') {
-        $set.status = 'In Review';
-      }
-    }
-    
-    if (agreedPrice !== undefined) $set.agreedPrice = agreedPrice;
-
-    const update = { $push: { messages: { sender: 'admin', text } } };
-    if (Object.keys($set).length) update.$set = $set;
+    const update = {
+      $push: { messages: { sender: 'admin', text } },
+    };
+    if (status) update.status = status;
 
     const request = await CustomOrderRequest.findByIdAndUpdate(
-      req.params.id, update, { new: true }
+      req.params.id,
+      update,
+      { new: true }
     );
-    if (!request) throw new AppError('Request not found.', 404);
-    
-    // Send notification when order is accepted
-    if (status === 'Accepted' && request.agreedPrice) {
-      const acceptedMessage = buildCustomOrderAcceptedMessage(request);
-      sendWhatsAppNotification(acceptedMessage).catch(() => {});
-    }
+    if (!request) throw new AppError('Custom order request not found.', 404);
     
     // Ensure proper ID mapping for frontend
     const obj = request.toObject();
@@ -160,16 +155,17 @@ export async function adminSendMessage(req, res, next) {
   } catch (err) { next(err); }
 }
 
-// ── Customer: send follow-up message ─────────────────────────────────────────
+// ── Customer: reply / send message in thread ──────────────────────────────────
 export async function customerSendMessage(req, res, next) {
   try {
     const { text } = z.object({ text: z.string().min(1) }).parse(req.body);
+
     const request = await CustomOrderRequest.findOneAndUpdate(
       { _id: req.params.id, user: req.user._id },
       { $push: { messages: { sender: 'customer', text } } },
       { new: true }
     );
-    if (!request) throw new AppError('Request not found.', 404);
+    if (!request) throw new AppError('Custom order request not found.', 404);
     
     // Ensure proper ID mapping for frontend
     const obj = request.toObject();
@@ -181,9 +177,9 @@ export async function customerSendMessage(req, res, next) {
   } catch (err) { next(err); }
 }
 
-// ── Customer: create a real Order from an accepted custom request ─────────────
+// ── Customer: Checkout custom order ──────────────────────────────────────────
 // Called when the customer clicks "Proceed to Payment" from their account.
-// Creates an Order with a virtual item (no product catalogue reference).
+// Creates or updates a pending Order with custom details without prematurely marking custom order as paid.
 export async function createOrderFromCustomRequest(req, res, next) {
   try {
     const customReq = await CustomOrderRequest.findOne({
@@ -196,11 +192,6 @@ export async function createOrderFromCustomRequest(req, res, next) {
     }
     if (!customReq.agreedPrice) {
       return res.status(400).json({ message: 'No agreed price set. Please wait for admin confirmation.' });
-    }
-    if (customReq.linkedOrderId) {
-      // Already has an order — return it
-      const existing = await Order.findById(customReq.linkedOrderId);
-      if (existing) return res.json({ order: existing });
     }
 
     const { address } = z.object({
@@ -221,11 +212,18 @@ export async function createOrderFromCustomRequest(req, res, next) {
     const subtotal = customReq.agreedPrice;
     const total = subtotal + shipping;
 
-    const order = await Order.create({
-      orderNumber,
-      user:     req.user._id,
-      address,
-      items: [{
+    // Check if there is already an existing pending order for this custom request
+    let order = await Order.findOne({
+      customOrderId: customReq._id,
+      paymentScreenshot: { $exists: false },
+    });
+
+    if (order) {
+      order.address = address;
+      order.subtotal = subtotal;
+      order.shipping = shipping;
+      order.total = total;
+      order.items = [{
         product:  null,
         name:     `Custom: ${customReq.productType}`,
         image:    customReq.referenceImage || '/images/products/amigurumi-bunny.jpg',
@@ -234,21 +232,39 @@ export async function createOrderFromCustomRequest(req, res, next) {
         customization: {
           color:            customReq.colors || '',
           size:             customReq.size   || '',
+          yarnType:         customReq.yarnType || '',
           specialRequest:   customReq.description,
         },
-      }],
-      subtotal:      subtotal,
-      shipping:      shipping,
-      discount:      0,
-      total:         total,
-      paymentMethod: 'upi-qr',
-      paymentStatus: 'Pending',
-      isCustomOrder: true,
-      customOrderId: customReq._id,
-    });
-
-    // Link back on the custom request
-    await CustomOrderRequest.findByIdAndUpdate(customReq._id, { linkedOrderId: order._id });
+      }];
+      await order.save();
+    } else {
+      order = await Order.create({
+        orderNumber,
+        user:     req.user._id,
+        address,
+        items: [{
+          product:  null,
+          name:     `Custom: ${customReq.productType}`,
+          image:    customReq.referenceImage || '/images/products/amigurumi-bunny.jpg',
+          price:    subtotal,
+          quantity: quantity,
+          customization: {
+            color:            customReq.colors || '',
+            size:             customReq.size   || '',
+            yarnType:         customReq.yarnType || '',
+            specialRequest:   customReq.description,
+          },
+        }],
+        subtotal:      subtotal,
+        shipping:      shipping,
+        discount:      0,
+        total:         total,
+        paymentMethod: 'upi-qr',
+        paymentStatus: 'Pending',
+        isCustomOrder: true,
+        customOrderId: customReq._id,
+      });
+    }
 
     // Populate user info for response
     await order.populate('user', 'name email');

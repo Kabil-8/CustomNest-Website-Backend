@@ -101,7 +101,17 @@ export async function createOrder(req, res, next) {
 
 export async function listMyOrders(req, res, next) {
   try {
-    const orders = await Order.find({ user: req.user._id }).populate('user', 'name email').sort({ createdAt: -1 });
+    // Only return placed orders that have an uploaded payment screenshot or verified payment
+    const orders = await Order.find({
+      user: req.user._id,
+      $or: [
+        { paymentScreenshot: { $exists: true, $nin: [null, ''] } },
+        { paymentStatus: { $in: ['Paid', 'Pending Verification', 'Confirmed', 'Processing', 'Shipped', 'Delivered'] } },
+      ],
+    })
+      .populate('user', 'name email')
+      .sort({ createdAt: -1 });
+
     // Ensure proper ID mapping for frontend
     const ordersWithId = orders.map(order => {
       const obj = order.toObject();
@@ -163,7 +173,16 @@ export async function getMyOrder(req, res, next) {
 
 export async function listAllOrders(_req, res, next) {
   try {
-    const orders = await Order.find().populate('user', 'name email').sort({ createdAt: -1 });
+    // Only show orders in Admin that have uploaded payment screenshots or verified payments
+    const orders = await Order.find({
+      $or: [
+        { paymentScreenshot: { $exists: true, $nin: [null, ''] } },
+        { paymentStatus: { $in: ['Paid', 'Pending Verification', 'Confirmed', 'Processing', 'Shipped', 'Delivered'] } },
+      ],
+    })
+      .populate('user', 'name email')
+      .sort({ createdAt: -1 });
+
     // Ensure proper ID mapping for frontend
     const ordersWithId = orders.map(order => {
       const obj = order.toObject();
@@ -237,6 +256,16 @@ export async function uploadPaymentScreenshot(req, res, next) {
       order.paymentScreenshot = `/uploads/${req.file.filename}`;
       order.paymentStatus = 'Pending Verification';
       await order.save();
+
+      // If this is a custom order, link it to the custom order request NOW that payment screenshot is uploaded!
+      if (order.isCustomOrder && order.customOrderId) {
+        try {
+          const CustomOrderRequest = (await import('../models/CustomOrderRequest.js')).default;
+          await CustomOrderRequest.findByIdAndUpdate(order.customOrderId, { linkedOrderId: order._id });
+        } catch (e) {
+          console.error('Failed to link custom order on screenshot upload', e);
+        }
+      }
 
       const orderObj = order.toObject();
       orderObj.id = orderObj._id;
