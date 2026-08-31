@@ -78,13 +78,27 @@ export async function listMyCustomOrders(req, res, next) {
 // ── Admin: update status only ─────────────────────────────────────────────────
 export async function updateCustomOrderStatus(req, res, next) {
   try {
-    const { status } = z
-      .object({ status: z.enum(['New', 'In Review', 'Quoted', 'Accepted', 'Declined']) })
+    const { status, agreedPrice } = z
+      .object({
+        status: z.enum(['New', 'In Review', 'Quoted', 'Accepted', 'Declined']),
+        agreedPrice: z.number().min(0).optional(),
+      })
       .parse(req.body);
+
+    const updateData = { status };
+    if (agreedPrice !== undefined) updateData.agreedPrice = agreedPrice;
+
     const request = await CustomOrderRequest.findByIdAndUpdate(
-      req.params.id, { status }, { new: true }
+      req.params.id,
+      updateData,
+      { new: true }
     );
     if (!request) throw new AppError('Request not found.', 404);
+
+    if (status === 'Accepted' && request.agreedPrice) {
+      const acceptedMessage = buildCustomOrderAcceptedMessage(request);
+      sendWhatsAppNotification(acceptedMessage).catch(() => {});
+    }
     
     // Ensure proper ID mapping for frontend
     const obj = request.toObject();

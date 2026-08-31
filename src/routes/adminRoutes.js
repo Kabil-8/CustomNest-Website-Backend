@@ -2,6 +2,7 @@ import { Router } from 'express';
 import {
   listCustomers,
   dashboardStats,
+  getBadgeCounts,
   expensesStats,
   listExpenses,
   createExpense,
@@ -12,6 +13,7 @@ import { requireAuth, requireRole } from '../middleware/auth.js';
 const router = Router();
 router.use(requireAuth, requireRole('admin'));
 
+router.get('/badge-counts', getBadgeCounts);
 router.get('/customers', listCustomers);
 router.get('/dashboard', dashboardStats);
 

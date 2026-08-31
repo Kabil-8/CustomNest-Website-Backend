@@ -48,6 +48,11 @@ const orderSchema = new mongoose.Schema(
     razorpaySignature: { type: String },
     // UPI QR payment screenshot
     paymentScreenshot: { type: String, default: null },
+    // Shipping, Handcrafting & Delivery Estimates
+    estimatedDeliveryDate: { type: String, default: null },
+    trackingNumber: { type: String, default: '' },
+    courierPartner: { type: String, default: '' },
+    shippedAt: { type: Date, default: null },
     // Set when this order was created from an accepted custom order request
     customOrderId: { type: mongoose.Schema.Types.ObjectId, ref: 'CustomOrderRequest', default: null },
     isCustomOrder: { type: Boolean, default: false },

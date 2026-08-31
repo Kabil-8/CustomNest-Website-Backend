@@ -2,6 +2,29 @@ import User from '../models/User.js';
 import Order from '../models/Order.js';
 import Product from '../models/Product.js';
 import Expense from '../models/Expense.js';
+import CustomOrderRequest from '../models/CustomOrderRequest.js';
+import ContactMessage from '../models/ContactMessage.js';
+import Review from '../models/Review.js';
+
+export async function getBadgeCounts(_req, res, next) {
+  try {
+    const [pendingOrders, newCustomOrders, unreadInquiries, pendingReviews] = await Promise.all([
+      Order.countDocuments({ status: { $in: ['Pending', 'Confirmed'] } }),
+      CustomOrderRequest.countDocuments({ status: { $in: ['New', 'In Review'] } }),
+      ContactMessage.countDocuments({ status: 'Unread' }),
+      Review.countDocuments({ approved: false }),
+    ]);
+
+    res.json({
+      orders: pendingOrders,
+      customOrders: newCustomOrders,
+      messages: unreadInquiries,
+      reviews: pendingReviews,
+    });
+  } catch (err) {
+    next(err);
+  }
+}
 
 export async function listCustomers(_req, res, next) {
   try {

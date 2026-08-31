@@ -21,6 +21,8 @@ import cartRoutes from './routes/cartRoutes.js';
 import reviewRoutes from './routes/reviewRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
 import paymentRoutes from './routes/paymentRoutes.js';
+import colorRoutes from './routes/colorRoutes.js';
+import contactRoutes from './routes/contactRoutes.js';
 
 const app = express();
 
@@ -71,6 +73,8 @@ app.use('/api/cart', cartRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/payment', paymentRoutes);
+app.use('/api/colors', colorRoutes);
+app.use('/api/contact', contactRoutes);
 
 // Uploaded reference images (custom order attachments) are served
 // statically; validated on upload by middleware/upload.js.

@@ -183,10 +183,23 @@ export async function listAllOrders(_req, res, next) {
 
 export async function updateOrderStatus(req, res, next) {
   try {
-    const { status } = z
-      .object({ status: z.enum(['Pending', 'Confirmed', 'Processing', 'Shipped', 'Delivered', 'Cancelled']) })
-      .parse(req.body);
-    const order = await Order.findByIdAndUpdate(req.params.id, { status }, { new: true });
+    const { status, estimatedDeliveryDate, trackingNumber, courierPartner } = req.body;
+    
+    if (status && !['Pending', 'Confirmed', 'Processing', 'Shipped', 'Delivered', 'Cancelled'].includes(status)) {
+      throw new AppError('Invalid order status.', 400);
+    }
+
+    const updateFields = {};
+    if (status) updateFields.status = status;
+    if (estimatedDeliveryDate !== undefined) updateFields.estimatedDeliveryDate = estimatedDeliveryDate;
+    if (trackingNumber !== undefined) updateFields.trackingNumber = trackingNumber;
+    if (courierPartner !== undefined) updateFields.courierPartner = courierPartner;
+
+    if (status === 'Shipped') {
+      updateFields.shippedAt = new Date();
+    }
+
+    const order = await Order.findByIdAndUpdate(req.params.id, updateFields, { new: true });
     if (!order) throw new AppError('Order not found.', 404);
     
     // Ensure proper ID mapping for frontend

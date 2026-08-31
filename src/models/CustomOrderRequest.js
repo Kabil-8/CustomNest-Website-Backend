@@ -15,8 +15,9 @@ const customOrderSchema = new mongoose.Schema(
     email:        { type: String, required: true },
     phone:        { type: String, required: true },
     productType:  { type: String, required: true },
-    colors:       String,
-    size:         String,
+    colors:       String,      // color palette theme name
+    yarnType:     { type: String, enum: ['normal', 'acrylic', 'either', ''], default: '' },
+    size:         String,      // e.g. Small / Medium / Large / Custom
     quantity:     { type: Number, default: 1, min: 1 },
     budget:       String,
     deadline:     String,
