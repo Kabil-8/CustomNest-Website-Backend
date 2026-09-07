@@ -14,6 +14,10 @@ const addressSchema = z.object({
   country: z.string().min(1),
 });
 
+// Global shipping rates (₹)
+const SHIPPING_TN = 50;      // Tamil Nadu (local)
+const SHIPPING_OUTER = 80;   // Outside Tamil Nadu
+
 const createOrderSchema = z.object({
   items: z
     .array(
@@ -28,7 +32,10 @@ const createOrderSchema = z.object({
     .min(1),
   address: addressSchema,
   paymentMethod: z.enum(['card', 'upi', 'upi-qr', 'razorpay']).default('razorpay'),
+  // Frontend passes this based on address state field
+  isOuterState: z.boolean().optional().default(false),
 });
+
 
 // Prices are always recomputed server-side from the database, never trusted
 // from the client, to prevent tampering with checkout totals.
@@ -41,11 +48,18 @@ export async function createOrder(req, res, next) {
     const productMap = new Map(products.map((p) => [p._id.toString(), p]));
 
     let subtotal = 0;
+    let maxPerProductShipping = null; // track highest per-product shipping charge
     const items = input.items.map((i) => {
       const product = productMap.get(i.productId);
       if (!product) throw new AppError(`Product ${i.productId} not found.`, 400);
       if (product.stock < i.quantity) throw new AppError(`${product.name} is out of stock.`, 409, 'OUT_OF_STOCK');
       subtotal += product.price * i.quantity;
+      // Track per-product shipping override
+      if (product.shippingCharge !== null && product.shippingCharge !== undefined) {
+        if (maxPerProductShipping === null || product.shippingCharge > maxPerProductShipping) {
+          maxPerProductShipping = product.shippingCharge;
+        }
+      }
       return {
         product: product._id,
         name: product.name,
@@ -56,7 +70,10 @@ export async function createOrder(req, res, next) {
       };
     });
 
-    const shipping = subtotal >= 999 ? 0 : 50;
+    // Determine shipping: per-product override (max) > global rate based on delivery state
+    const globalRate = input.isOuterState ? SHIPPING_OUTER : SHIPPING_TN;
+    const shipping = maxPerProductShipping !== null ? maxPerProductShipping : globalRate;
+
     const total = subtotal + shipping;
     const orderNumber = `TCN${Math.floor(100000 + Math.random() * 900000)}`;
 

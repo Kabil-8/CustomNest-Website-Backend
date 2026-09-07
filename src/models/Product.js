@@ -30,6 +30,10 @@ const productSchema = new mongoose.Schema(
     bestseller: { type: Boolean, default: false },
     isNew: { type: Boolean, default: false },
     customizable: { type: Boolean, default: false },
+    // Admin toggle: show/hide "Custom Name / Monogram" input on product page
+    allowCustomName: { type: Boolean, default: false },
+    // Per-product shipping override (₹). null = use global rate (₹50 TN / ₹80 outer state)
+    shippingCharge: { type: Number, min: 0, default: null },
     stock: { type: Number, default: 0, min: 0 },
     rating: { type: Number, default: 0, min: 0, max: 5 },
     reviewCount: { type: Number, default: 0, min: 0 },
@@ -44,6 +48,7 @@ const productSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
 
 productSchema.index({ name: 'text', description: 'text' });
 

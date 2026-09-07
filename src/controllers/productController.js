@@ -27,7 +27,7 @@ export async function listProducts(req, res, next) {
     }
 
     const pageNum = Math.max(1, Number(page));
-    const limitNum = Math.min(48, Math.max(1, Number(limit)));
+    const limitNum = Math.min(500, Math.max(1, Number(limit)));
 
     const total = await Product.countDocuments(filter);
 
