@@ -23,7 +23,8 @@ const customOrderSchema = new mongoose.Schema(
     budget:       String,
     deadline:     String,
     description:  { type: String, required: true },
-    referenceImage: String,  // Customer's own photo (e.g. person/pet to recreate)
+    referenceImage: String,  // Customer's own photo (first photo, for backward compatibility)
+    referenceImages: { type: [String], default: [] }, // Array of up to 3 customer photos (especially for resin art)
     sampleImage:    String,  // Sample/inspiration reference image
     status: {
       type: String,

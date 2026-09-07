@@ -16,8 +16,11 @@ const router = Router();
 
 // ── Customer ──────────────────────────────────────────────────────────────────
 router.post('/',               requireAuth, upload.fields([
-  { name: 'referenceImage', maxCount: 1 },
-  { name: 'sampleImage',    maxCount: 1 },
+  { name: 'referenceImage',  maxCount: 1 },
+  { name: 'referenceImage2', maxCount: 1 },
+  { name: 'referenceImage3', maxCount: 1 },
+  { name: 'referenceImages', maxCount: 3 },
+  { name: 'sampleImage',     maxCount: 1 },
 ]), submitCustomOrder);
 
 router.get('/my',              requireAuth, listMyCustomOrders);

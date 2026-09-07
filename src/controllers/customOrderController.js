@@ -31,20 +31,31 @@ export async function submitCustomOrder(req, res, next) {
 
     // req.files is a dict when using upload.fields()
     const files = req.files || {};
-    const refFile    = Array.isArray(files.referenceImage) ? files.referenceImage[0] : null;
-    const sampleFile = Array.isArray(files.sampleImage)    ? files.sampleImage[0]    : null;
+    const refFile1 = Array.isArray(files.referenceImage) ? files.referenceImage[0] : null;
+    const refFile2 = Array.isArray(files.referenceImage2) ? files.referenceImage2[0] : null;
+    const refFile3 = Array.isArray(files.referenceImage3) ? files.referenceImage3[0] : null;
+    const refFilesArray = Array.isArray(files.referenceImages) ? files.referenceImages : [];
 
-    const referenceImage = refFile
-      ? `/uploads/${refFile.filename}`
-      : (input.referenceImage || undefined);
+    const allRefImages = [];
+    if (refFile1) allRefImages.push(`/uploads/${refFile1.filename}`);
+    if (refFile2) allRefImages.push(`/uploads/${refFile2.filename}`);
+    if (refFile3) allRefImages.push(`/uploads/${refFile3.filename}`);
+    for (const f of refFilesArray) {
+      allRefImages.push(`/uploads/${f.filename}`);
+    }
 
+    const sampleFile = Array.isArray(files.sampleImage) ? files.sampleImage[0] : null;
     const sampleImage = sampleFile
       ? `/uploads/${sampleFile.filename}`
-      : undefined;
+      : (input.sampleImage || undefined);
+
+    const referenceImage = allRefImages[0] || input.referenceImage || undefined;
+    const referenceImages = allRefImages.length > 0 ? allRefImages : (referenceImage ? [referenceImage] : []);
 
     const request = await CustomOrderRequest.create({
       ...input,
       referenceImage,
+      referenceImages,
       sampleImage,
       user: req.user._id,
       messages: [{ sender: 'customer', text: input.description }],
