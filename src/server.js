@@ -27,7 +27,9 @@ import contactRoutes from './routes/contactRoutes.js';
 const app = express();
 
 // Security headers.
-app.use(helmet());
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: 'cross-origin' },
+}));
 
 // CORS is locked to the configured storefront origin only, with credentials
 const allowedOrigins = [
@@ -78,7 +80,12 @@ app.use('/api/contact', contactRoutes);
 
 // Uploaded reference images (custom order attachments) are served
 // statically; validated on upload by middleware/upload.js.
-app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static('uploads', {
+  setHeaders: (res) => {
+    res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+  },
+}));
 
 app.use(notFound);
 app.use(errorHandler);

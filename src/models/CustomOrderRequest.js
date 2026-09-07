@@ -22,7 +22,8 @@ const customOrderSchema = new mongoose.Schema(
     budget:       String,
     deadline:     String,
     description:  { type: String, required: true },
-    referenceImage: String,
+    referenceImage: String,  // Customer's own photo (e.g. person/pet to recreate)
+    sampleImage:    String,  // Sample/inspiration reference image
     status: {
       type: String,
       enum: ['New', 'In Review', 'Quoted', 'Accepted', 'Declined'],

@@ -26,10 +26,24 @@ export async function submitCustomOrder(req, res, next) {
     if (input.email.toLowerCase() !== req.user.email.toLowerCase()) {
       return res.status(400).json({ message: 'The email address must match your account email.' });
     }
-    const referenceImage = req.file ? `/uploads/${req.file.filename}` : (input.referenceImage || undefined);
+
+    // req.files is a dict when using upload.fields()
+    const files = req.files || {};
+    const refFile    = Array.isArray(files.referenceImage) ? files.referenceImage[0] : null;
+    const sampleFile = Array.isArray(files.sampleImage)    ? files.sampleImage[0]    : null;
+
+    const referenceImage = refFile
+      ? `/uploads/${refFile.filename}`
+      : (input.referenceImage || undefined);
+
+    const sampleImage = sampleFile
+      ? `/uploads/${sampleFile.filename}`
+      : undefined;
+
     const request = await CustomOrderRequest.create({
       ...input,
       referenceImage,
+      sampleImage,
       user: req.user._id,
       messages: [{ sender: 'customer', text: input.description }],
     });

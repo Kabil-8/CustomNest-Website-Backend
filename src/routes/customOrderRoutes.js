@@ -15,7 +15,11 @@ import { upload } from '../middleware/upload.js';
 const router = Router();
 
 // ── Customer ──────────────────────────────────────────────────────────────────
-router.post('/',               requireAuth, upload.single('referenceImage'), submitCustomOrder);
+router.post('/',               requireAuth, upload.fields([
+  { name: 'referenceImage', maxCount: 1 },
+  { name: 'sampleImage',    maxCount: 1 },
+]), submitCustomOrder);
+
 router.get('/my',              requireAuth, listMyCustomOrders);
 router.post('/:id/message',    requireAuth, customerSendMessage);
 router.post('/:id/checkout',   requireAuth, createOrderFromCustomRequest);
