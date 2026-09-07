@@ -11,12 +11,14 @@ const requestSchema = z.object({
   productType:    z.string().min(2),
   colors:         z.string().optional().nullable(),
   yarnType:       z.string().optional().nullable(),
+  resinOption:    z.string().optional().nullable(),
   size:           z.string().optional().nullable(),
   quantity:       z.coerce.number().int().min(1).default(1),
   budget:         z.string().optional().nullable(),
   deadline:       z.string().optional().nullable(),
   description:    z.string().min(10),
   referenceImage: z.string().optional().nullable(),
+  sampleImage:    z.string().optional().nullable(),
 });
 
 // ── Submit (customer, logged in) ──────────────────────────────────────────────

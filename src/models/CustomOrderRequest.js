@@ -17,6 +17,7 @@ const customOrderSchema = new mongoose.Schema(
     productType:  { type: String, required: true },
     colors:       String,      // color palette theme name
     yarnType:     { type: String, enum: ['normal', 'acrylic', 'either', ''], default: '' },
+    resinOption:  { type: String, default: '' }, // 'Only Resin', 'Resin and Stand', 'Resin and Light', 'Resin and Light and with Stand'
     size:         String,      // e.g. Small / Medium / Large / Custom
     quantity:     { type: Number, default: 1, min: 1 },
     budget:       String,
