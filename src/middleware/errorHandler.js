@@ -6,16 +6,27 @@ export function notFound(req, res) {
 }
 
 export function errorHandler(err, req, res, _next) {
-  const status = err.statusCode || 500;
+  let status = err.statusCode || err.status || 500;
   const isProd = process.env.NODE_ENV === 'production';
 
   if (!isProd) {
     console.error(err);
   }
 
+  let message = err.message;
+  let code = err.code;
+
+  if (err.type === 'entity.too.large' || status === 413) {
+    status = 413;
+    code = code || 'PAYLOAD_TOO_LARGE';
+    message = 'Image or payload size is too large. Please upload smaller or compressed images.';
+  } else if (status === 500 && isProd) {
+    message = 'Something went wrong. Please try again.';
+  }
+
   res.status(status).json({
-    message: status === 500 && isProd ? 'Something went wrong. Please try again.' : err.message,
-    code: err.code,
+    message,
+    code,
   });
 }
 
