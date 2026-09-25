@@ -52,7 +52,8 @@ const orderSchema = new mongoose.Schema(
     estimatedDeliveryDate: { type: String, default: null },
     trackingNumber: { type: String, default: '' },
     courierPartner: { type: String, default: '' },
-    shippedAt: { type: Date, default: null },
+    // Customer product expectations & customization / color choice notes
+    customerNotes: { type: String, default: '' },
     // Set when this order was created from an accepted custom order request
     customOrderId: { type: mongoose.Schema.Types.ObjectId, ref: 'CustomOrderRequest', default: null },
     isCustomOrder: { type: Boolean, default: false },

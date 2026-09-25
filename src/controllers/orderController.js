@@ -34,6 +34,8 @@ const createOrderSchema = z.object({
   paymentMethod: z.enum(['card', 'upi', 'upi-qr', 'razorpay']).default('razorpay'),
   // Frontend passes this based on address state field
   isOuterState: z.boolean().optional().default(false),
+  customerNotes: z.string().optional().default(''),
+  notes: z.string().optional().default(''),
 });
 
 
@@ -76,12 +78,14 @@ export async function createOrder(req, res, next) {
 
     const total = subtotal + shipping;
     const orderNumber = `TCN${Math.floor(100000 + Math.random() * 900000)}`;
+    const customerNotes = (input.customerNotes || input.notes || '').trim();
 
     const order = await Order.create({
       orderNumber,
       user: req.user._id,
       items,
       address: input.address,
+      customerNotes,
       subtotal,
       shipping,
       discount: 0,
