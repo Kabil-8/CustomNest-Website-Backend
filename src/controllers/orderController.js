@@ -25,7 +25,16 @@ const createOrderSchema = z.object({
         productId: z.string(),
         quantity: z.number().int().min(1),
         customization: z
-          .object({ color: z.string().optional(), size: z.string().optional(), personalization: z.string().optional(), specialRequest: z.string().optional() })
+          .object({
+            color: z.string().optional(),
+            size: z.string().optional(),
+            personalization: z.string().optional(),
+            specialRequest: z.string().optional(),
+            yarnType: z.string().optional(),
+            resinOption: z.string().optional(),
+            text: z.string().optional(),
+          })
+          .passthrough()
           .optional(),
       })
     )

@@ -13,6 +13,9 @@ const orderItemSchema = new mongoose.Schema(
       size: String,
       personalization: String,
       specialRequest: String,
+      yarnType: String,
+      resinOption: String,
+      text: String,
     },
   },
   { _id: false }
