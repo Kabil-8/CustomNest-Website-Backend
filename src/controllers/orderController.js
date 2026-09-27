@@ -165,7 +165,11 @@ export async function listMyOrders(req, res, next) {
 
 export async function getMyOrder(req, res, next) {
   try {
-    const order = await Order.findOne({ _id: req.params.id, user: req.user._id }).populate('user', 'name email');
+    const isUserAdmin = req.user && req.user.role === 'admin';
+    const query = isUserAdmin ? { _id: req.params.id } : { _id: req.params.id, user: req.user._id };
+    const order = await Order.findOne(query)
+      .populate('user', 'name email')
+      .populate('customOrderId', 'referenceImage referenceImages sampleImage description productType');
     if (!order) throw new AppError('Order not found.', 404);
     
     let customOrderMessages = null;
@@ -211,6 +215,7 @@ export async function listAllOrders(_req, res, next) {
       ],
     })
       .populate('user', 'name email')
+      .populate('customOrderId', 'referenceImage referenceImages sampleImage description productType')
       .sort({ createdAt: -1 });
 
     // Ensure proper ID mapping for frontend

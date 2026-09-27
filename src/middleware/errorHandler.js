@@ -9,19 +9,37 @@ export function errorHandler(err, req, res, _next) {
   let status = err.statusCode || err.status || 500;
   const isProd = process.env.NODE_ENV === 'production';
 
-  if (!isProd) {
-    console.error(err);
-  }
+  // Always log error details so backend logs on Render / local terminal show exact stack
+  console.error('[API Error]', {
+    method: req.method,
+    url: req.originalUrl,
+    status,
+    message: err.message,
+    name: err.name,
+    stack: err.stack,
+  });
 
   let message = err.message;
   let code = err.code;
 
-  if (err.type === 'entity.too.large' || status === 413) {
+  if (err.name === 'ZodError') {
+    status = 400;
+    code = 'VALIDATION_ERROR';
+    message = err.errors?.map((e) => `${e.path.join('.') || 'field'}: ${e.message}`).join(', ') || 'Validation error';
+  } else if (err.name === 'MulterError') {
+    status = 400;
+    code = err.code || 'UPLOAD_ERROR';
+    if (err.code === 'LIMIT_FILE_SIZE') {
+      message = 'Image file size is too large. Maximum allowed size is 15MB.';
+    } else {
+      message = `Upload error: ${err.message}`;
+    }
+  } else if (err.type === 'entity.too.large' || status === 413) {
     status = 413;
     code = code || 'PAYLOAD_TOO_LARGE';
     message = 'Image or payload size is too large. Please upload smaller or compressed images.';
-  } else if (status === 500 && isProd) {
-    message = 'Something went wrong. Please try again.';
+  } else if (status === 500 && isProd && !err.isCustomError) {
+    message = 'Something went wrong on the server. Please try again.';
   }
 
   res.status(status).json({

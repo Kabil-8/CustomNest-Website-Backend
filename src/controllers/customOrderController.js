@@ -5,18 +5,18 @@ import { AppError } from '../middleware/errorHandler.js';
 import { sendWhatsAppNotification, buildCustomOrderMessage, buildCustomOrderAcceptedMessage } from '../utils/whatsapp.js';
 
 const requestSchema = z.object({
-  name:           z.string().min(2),
+  name:           z.string().min(1),
   email:          z.string().email(),
-  phone:          z.string().min(6),
-  productType:    z.string().min(2),
-  colors:         z.string().optional().nullable(),
-  yarnType:       z.string().optional().nullable(),
-  resinOption:    z.string().optional().nullable(),
-  size:           z.string().optional().nullable(),
+  phone:          z.string().min(4),
+  productType:    z.string().min(1),
+  colors:         z.string().optional().nullable().transform((v) => v || ''),
+  yarnType:       z.string().optional().nullable().transform((v) => v || ''),
+  resinOption:    z.string().optional().nullable().transform((v) => v || ''),
+  size:           z.string().optional().nullable().transform((v) => v || ''),
   quantity:       z.coerce.number().int().min(1).default(1),
-  budget:         z.string().optional().nullable(),
-  deadline:       z.string().optional().nullable(),
-  description:    z.string().min(10),
+  budget:         z.string().optional().nullable().transform((v) => v || ''),
+  deadline:       z.string().optional().nullable().transform((v) => v || ''),
+  description:    z.string().min(3),
   referenceImage: z.string().optional().nullable(),
   sampleImage:    z.string().optional().nullable(),
 });
@@ -25,13 +25,22 @@ const requestSchema = z.object({
 export async function submitCustomOrder(req, res, next) {
   try {
     const input = requestSchema.parse(req.body);
-    if (input.email.toLowerCase() !== req.user.email.toLowerCase()) {
-      return res.status(400).json({ message: 'The email address must match your account email.' });
+
+    const userEmail = req.user?.email ? req.user.email.trim().toLowerCase() : '';
+    const inputEmail = input.email ? input.email.trim().toLowerCase() : '';
+
+    // If customer logged in with phone and didn't have email stored, attach it to their profile
+    if (req.user && !req.user.email && inputEmail) {
+      req.user.email = inputEmail;
+      await req.user.save().catch(() => {});
     }
+
+    const finalEmail = userEmail || inputEmail;
 
     // req.files is a dict when using upload.fields()
     const files = req.files || {};
-    const refFile1 = Array.isArray(files.referenceImage) ? files.referenceImage[0] : null;
+    const refFile1 = (Array.isArray(files.referenceImage) ? files.referenceImage[0] : null)
+      || (Array.isArray(files.referenceImage1) ? files.referenceImage1[0] : null);
     const refFile2 = Array.isArray(files.referenceImage2) ? files.referenceImage2[0] : null;
     const refFile3 = Array.isArray(files.referenceImage3) ? files.referenceImage3[0] : null;
     const refFilesArray = Array.isArray(files.referenceImages) ? files.referenceImages : [];
@@ -41,7 +50,7 @@ export async function submitCustomOrder(req, res, next) {
     if (refFile2) allRefImages.push(`/uploads/${refFile2.filename}`);
     if (refFile3) allRefImages.push(`/uploads/${refFile3.filename}`);
     for (const f of refFilesArray) {
-      allRefImages.push(`/uploads/${f.filename}`);
+      if (f && f.filename) allRefImages.push(`/uploads/${f.filename}`);
     }
 
     const sampleFile = Array.isArray(files.sampleImage) ? files.sampleImage[0] : null;
@@ -54,6 +63,7 @@ export async function submitCustomOrder(req, res, next) {
 
     const request = await CustomOrderRequest.create({
       ...input,
+      email: finalEmail,
       referenceImage,
       referenceImages,
       sampleImage,

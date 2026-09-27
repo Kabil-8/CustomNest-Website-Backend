@@ -79,9 +79,17 @@ app.use('/api/payment', paymentRoutes);
 app.use('/api/colors', colorRoutes);
 app.use('/api/contact', contactRoutes);
 
+import fs from 'node:fs';
+import path from 'node:path';
+
+const uploadDir = path.resolve(process.cwd(), 'uploads');
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
+
 // Uploaded reference images (custom order attachments) are served
 // statically; validated on upload by middleware/upload.js.
-app.use('/uploads', express.static('uploads', {
+app.use('/uploads', express.static(uploadDir, {
   setHeaders: (res) => {
     res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -93,8 +101,22 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
+async function syncCategories() {
+  try {
+    const Category = (await import('./models/Category.js')).default;
+    // Align any resin frames category to 'Resin Photo Frames'
+    await Category.updateMany(
+      { $or: [{ slug: 'resin-frames' }, { name: /resin/i }] },
+      { $set: { name: 'Resin Photo Frames', slug: 'resin-frames', collection: 'resin-frames' } }
+    );
+  } catch (err) {
+    console.warn('[server] Category sync skipped:', err.message);
+  }
+}
+
 async function start() {
   await connectDB();
+  await syncCategories();
   startCleanupJobs();
   app.listen(PORT, () => console.log(`[server] TheCustomNest API running on port ${PORT}`));
 }

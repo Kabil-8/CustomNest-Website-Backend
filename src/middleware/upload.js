@@ -1,6 +1,12 @@
 import multer from 'multer';
 import path from 'node:path';
+import fs from 'node:fs';
 import { AppError } from './errorHandler.js';
+
+const uploadDir = path.resolve(process.cwd(), 'uploads');
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
 
 const ALLOWED_MIME = new Set([
   'image/jpeg',
@@ -15,7 +21,12 @@ const ALLOWED_EXT = new Set(['.jpg', '.jpeg', '.png', '.webp', '.heic', '.heif']
 const MAX_BYTES = Number(process.env.MAX_UPLOAD_MB || 15) * 1024 * 1024;
 
 const storage = multer.diskStorage({
-  destination: (_req, _file, cb) => cb(null, 'uploads/'),
+  destination: (_req, _file, cb) => {
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true });
+    }
+    cb(null, uploadDir);
+  },
   filename: (_req, file, cb) => {
     const ext = path.extname(file.originalname).toLowerCase();
     const safeName = `${Date.now()}-${Math.round(Math.random() * 1e9)}${ext}`;

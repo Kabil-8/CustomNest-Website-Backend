@@ -5,12 +5,36 @@ import { AppError } from '../middleware/errorHandler.js';
 
 export async function listProducts(req, res, next) {
   try {
-    const { q, category, collection, maxPrice, customizable, home, sort = 'featured', page = 1, limit = 12 } = req.query;
+    const {
+      q,
+      category,
+      collection,
+      maxPrice,
+      customizable,
+      inStock,
+      inStockOnly,
+      minRating,
+      home,
+      sort = 'featured',
+      page = 1,
+      limit = 12,
+    } = req.query;
     const filter = {};
 
     if (q) filter.$text = { $search: String(q) };
     if (maxPrice) filter.price = { $lte: Number(maxPrice) };
-    if (customizable === '1') filter.customizable = true;
+    if (customizable === '1' || customizable === 'true') filter.customizable = true;
+
+    // In stock filter
+    if (inStock === '1' || inStock === 'true' || inStockOnly === '1' || inStockOnly === 'true') {
+      filter.stock = { $gt: 0 };
+    }
+
+    // Min rating filter
+    if (minRating && Number(minRating) > 0) {
+      filter.rating = { $gte: Number(minRating) };
+    }
+
     if (home === '1' || home === 'true') {
       filter.$or = [
         { featuredRank: { $gt: 0, $lte: 10 } },
@@ -19,11 +43,44 @@ export async function listProducts(req, res, next) {
     }
 
     if (category || collection) {
-      const catFilter = {};
-      if (category) catFilter.slug = category;
-      if (collection) catFilter.collection = collection;
-      const categoryIds = await Category.find(catFilter).distinct('_id');
-      filter.category = { $in: categoryIds };
+      const orConditions = [];
+
+      if (category) {
+        const raw = String(category).trim();
+        const isMongoId = mongoose.Types.ObjectId.isValid(raw);
+        const escaped = raw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const slugPatterns = [new RegExp(`^${escaped}$`, 'i')];
+
+        // Known aliases for resin photo frames category
+        if (['resin-frames', 'resin-photo-frames', 'resin-memory-frames', 'resin-art'].includes(raw.toLowerCase())) {
+          slugPatterns.push(/^resin-frames$/i, /^resin-photo-frames$/i, /^resin-memory-frames$/i, /^resin-art$/i);
+        }
+
+        const catQuery = {
+          $or: [
+            { slug: { $in: slugPatterns } },
+            { name: new RegExp(escaped, 'i') },
+            ...(isMongoId ? [{ _id: raw }] : []),
+          ],
+        };
+        if (collection) {
+          catQuery.collection = new RegExp(`^${String(collection).trim()}$`, 'i');
+        }
+        orConditions.push(catQuery);
+      } else if (collection) {
+        orConditions.push({
+          collection: new RegExp(`^${String(collection).trim()}$`, 'i'),
+        });
+      }
+
+      const foundCats = await Category.find({ $or: orConditions }).distinct('_id');
+      if (foundCats.length > 0) {
+        filter.category = { $in: foundCats };
+      } else if (category && mongoose.Types.ObjectId.isValid(category)) {
+        filter.category = category;
+      } else {
+        filter.category = { $in: [] };
+      }
     }
 
     const pageNum = Math.max(1, Number(page));
