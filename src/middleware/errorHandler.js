@@ -30,7 +30,9 @@ export function errorHandler(err, req, res, _next) {
     status = 400;
     code = err.code || 'UPLOAD_ERROR';
     if (err.code === 'LIMIT_FILE_SIZE') {
-      message = 'Image file size is too large. Maximum allowed size is 15MB.';
+      message = err.message && err.message !== 'File too large'
+        ? err.message
+        : 'File size is too large (maximum allowed size is 5MB for screenshots). Please choose a smaller image.';
     } else {
       message = `Upload error: ${err.message}`;
     }

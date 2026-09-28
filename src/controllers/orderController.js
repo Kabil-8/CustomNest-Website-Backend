@@ -2,7 +2,7 @@ import { z } from 'zod';
 import Order from '../models/Order.js';
 import Product from '../models/Product.js';
 import { AppError } from '../middleware/errorHandler.js';
-import { upload } from '../middleware/upload.js';
+import { upload, uploadScreenshot } from '../middleware/upload.js';
 
 const addressSchema = z.object({
   fullName: z.string().min(2),
@@ -267,9 +267,12 @@ export async function updateOrderStatus(req, res, next) {
 
 export async function uploadPaymentScreenshot(req, res, next) {
   try {
-    // Use multer middleware for single file upload
-    upload.single('paymentScreenshot')(req, res, async (err) => {
+    // Use dedicated uploadScreenshot middleware with 5MB limit
+    uploadScreenshot.single('paymentScreenshot')(req, res, async (err) => {
       if (err) {
+        if (err.code === 'LIMIT_FILE_SIZE') {
+          return next(new AppError('Payment screenshot cannot exceed 5MB. Please choose an image under 5MB.', 400, 'LIMIT_FILE_SIZE'));
+        }
         return next(new AppError(err.message || 'File upload failed', 400));
       }
 
