@@ -266,6 +266,12 @@ export async function deleteProduct(req, res, next) {
 export async function listCategories(_req, res, next) {
   try {
     const rawCategories = await Category.find().sort({ name: 1 });
+    const productCounts = await Product.aggregate([
+      { $group: { _id: '$category', count: { $sum: 1 } } },
+    ]);
+    const countMap = new Map();
+    productCounts.forEach((p) => countMap.set(String(p._id), p.count));
+
     const categories = rawCategories.map((c) => {
       const obj = c.toObject();
       if (obj.slug === 'kids-toys-jumbo' || /jumbo kids/i.test(obj.name)) {
@@ -276,6 +282,7 @@ export async function listCategories(_req, res, next) {
         obj.name = 'Resin Photo Frames';
         obj.slug = 'resin-frames';
       }
+      obj.productCount = countMap.get(String(obj._id)) || 0;
       return obj;
     });
     res.json({ categories });
@@ -283,3 +290,74 @@ export async function listCategories(_req, res, next) {
     next(err);
   }
 }
+
+export async function createCategory(req, res, next) {
+  try {
+    const { name, slug, collection, image } = req.body;
+    if (!name || !name.trim()) throw new AppError('Category name is required.', 400);
+
+    const safeSlug = (slug || name).toLowerCase().trim().replace(/[^a-z0-9]+/g, '-');
+    const existing = await Category.findOne({ slug: safeSlug });
+    if (existing) throw new AppError(`Category with slug "${safeSlug}" already exists.`, 400);
+
+    const category = await Category.create({
+      name: name.trim(),
+      slug: safeSlug,
+      collection: collection?.trim() || safeSlug,
+      image: image?.trim() || '/images/categories/jumbo-flower-bouquets.jpg',
+    });
+
+    res.status(201).json({ category });
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function updateCategory(req, res, next) {
+  try {
+    const { id } = req.params;
+    const { name, slug, collection, image } = req.body;
+
+    const category = await Category.findById(id);
+    if (!category) throw new AppError('Category not found.', 404);
+
+    if (name && name.trim()) category.name = name.trim();
+    if (slug && slug.trim()) {
+      const safeSlug = slug.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-');
+      if (safeSlug !== category.slug) {
+        const existing = await Category.findOne({ slug: safeSlug, _id: { $ne: id } });
+        if (existing) throw new AppError(`Category slug "${safeSlug}" is already in use.`, 400);
+        category.slug = safeSlug;
+      }
+    }
+    if (collection !== undefined) category.collection = collection.trim() || category.slug;
+    if (image !== undefined) category.image = image.trim();
+
+    await category.save();
+    res.json({ category });
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function deleteCategory(req, res, next) {
+  try {
+    const { id } = req.params;
+    const category = await Category.findById(id);
+    if (!category) throw new AppError('Category not found.', 404);
+
+    const productCount = await Product.countDocuments({ category: id });
+    if (productCount > 0) {
+      throw new AppError(
+        `Cannot delete category "${category.name}". It is currently assigned to ${productCount} active product(s). Please reassign those products first.`,
+        400
+      );
+    }
+
+    await Category.findByIdAndDelete(id);
+    res.status(204).send();
+  } catch (err) {
+    next(err);
+  }
+}
+
