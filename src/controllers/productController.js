@@ -296,7 +296,7 @@ export async function listCategories(_req, res, next) {
         obj.name = 'Kids Special';
         obj.slug = 'kids-special';
       }
-      if (obj.slug === 'resin-frames' || /resin/i.test(obj.name)) {
+      if (obj.slug === 'resin-photo-frames' || /^resin\s*photo\s*frames?$/i.test(obj.name)) {
         obj.name = 'Resin Photo Frames';
         obj.slug = 'resin-frames';
       }

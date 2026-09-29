@@ -106,9 +106,9 @@ async function syncCategories() {
     const Category = (await import('./models/Category.js')).default;
     const Product = (await import('./models/Product.js')).default;
 
-    // 1. Align any resin frames category to 'Resin Photo Frames'
+    // 1. Align any resin frames category to 'Resin Photo Frames' (do not touch other resin categories like resin keychain)
     await Category.updateMany(
-      { $or: [{ slug: 'resin-frames' }, { name: /resin/i }] },
+      { $or: [{ slug: 'resin-frames' }, { slug: 'resin-photo-frames' }, { name: /^resin\s*photo\s*frames?$/i }, { name: /^resin\s*frames?$/i }] },
       { $set: { name: 'Resin Photo Frames', slug: 'resin-frames', collection: 'resin-frames' } }
     );
 
