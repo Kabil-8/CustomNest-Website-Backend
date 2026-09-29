@@ -55,22 +55,40 @@ export async function createOrder(req, res, next) {
     const input = createOrderSchema.parse(req.body);
 
     const productIds = input.items.map((i) => i.productId);
-    const products = await Product.find({ _id: { $in: productIds } });
+    const products = await Product.find({ _id: { $in: productIds } }).populate('category', 'name slug');
     const productMap = new Map(products.map((p) => [p._id.toString(), p]));
 
     let subtotal = 0;
-    let maxPerProductShipping = null; // track highest per-product shipping charge
+    let maxPerProductShipping = null; // track highest per-product shipping charge for regular products
+    let hasRegularProducts = false;
+
     const items = input.items.map((i) => {
       const product = productMap.get(i.productId);
       if (!product) throw new AppError(`Product ${i.productId} not found.`, 400);
       if (product.stock < i.quantity) throw new AppError(`${product.name} is out of stock.`, 409, 'OUT_OF_STOCK');
       subtotal += product.price * i.quantity;
-      // Track per-product shipping override
-      if (product.shippingCharge !== null && product.shippingCharge !== undefined) {
-        if (maxPerProductShipping === null || product.shippingCharge > maxPerProductShipping) {
-          maxPerProductShipping = product.shippingCharge;
+
+      const catSlug = (product.category && typeof product.category === 'object' ? product.category.slug : '') || '';
+      const catName = (product.category && typeof product.category === 'object' ? product.category.name : '') || '';
+      const catId = (product.category && typeof product.category === 'object' ? product.category._id?.toString() : String(product.category || ''));
+      const isAddon = Boolean(
+        product.isAddon ||
+        catSlug === 'add-ons' ||
+        catSlug === 'addon' ||
+        catId === '6a7849c1abe39c4544be29d9' ||
+        /add-?on/i.test(catName)
+      );
+
+      // Add-on products have NO shipping fee. Only regular non-addon products determine shipping.
+      if (!isAddon) {
+        hasRegularProducts = true;
+        if (product.shippingCharge !== null && product.shippingCharge !== undefined) {
+          if (maxPerProductShipping === null || product.shippingCharge > maxPerProductShipping) {
+            maxPerProductShipping = product.shippingCharge;
+          }
         }
       }
+
       return {
         product: product._id,
         name: product.name,
@@ -81,9 +99,16 @@ export async function createOrder(req, res, next) {
       };
     });
 
-    // Determine shipping: per-product override (max) > global rate based on delivery state
-    const globalRate = input.isOuterState ? SHIPPING_OUTER : SHIPPING_TN;
-    const shipping = maxPerProductShipping !== null ? maxPerProductShipping : globalRate;
+    // Determine shipping:
+    // If order has ONLY add-on products -> ₹0 shipping money!
+    // If order has regular products -> regular products determine shipping rate (add-ons do not add shipping)
+    let shipping = 0;
+    if (hasRegularProducts) {
+      const globalRate = input.isOuterState ? SHIPPING_OUTER : SHIPPING_TN;
+      shipping = maxPerProductShipping !== null ? maxPerProductShipping : globalRate;
+    } else {
+      shipping = 0; // Free shipping for add-ons!
+    }
 
     const total = subtotal + shipping;
     const orderNumber = `TCN${Math.floor(100000 + Math.random() * 900000)}`;

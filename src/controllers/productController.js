@@ -15,6 +15,7 @@ export async function listProducts(req, res, next) {
       inStockOnly,
       minRating,
       home,
+      isAddon,
       sort = 'featured',
       page = 1,
       limit = 12,
@@ -39,6 +40,17 @@ export async function listProducts(req, res, next) {
       filter.$or = [
         { featuredRank: { $gt: 0, $lte: 10 } },
         { showOnHome: true },
+      ];
+    }
+
+    // Addon products filter
+    if (isAddon === '1' || isAddon === 'true') {
+      const addonCats = await Category.find({
+        $or: [{ slug: /^add-?ons?$/i }, { name: /add-?on/i }]
+      }).distinct('_id');
+      filter.$or = [
+        { isAddon: true },
+        { category: { $in: addonCats } },
       ];
     }
 
@@ -217,6 +229,9 @@ export async function createProduct(req, res, next) {
         data.price = Number(data.normalPrice);
       }
     }
+    if (data.isAddon) {
+      data.shippingCharge = 0;
+    }
     const created = await Product.create(data);
     const product = await Product.findById(created._id)
       .populate('category', 'name slug collection')
@@ -241,6 +256,9 @@ export async function updateProduct(req, res, next) {
       if (data.normalPrice !== undefined && data.normalPrice !== null && (!data.price || data.price === 0)) {
         data.price = Number(data.normalPrice);
       }
+    }
+    if (data.isAddon) {
+      data.shippingCharge = 0;
     }
     const product = await Product.findByIdAndUpdate(req.params.id, data, { new: true, runValidators: true })
       .populate('category', 'name slug collection')

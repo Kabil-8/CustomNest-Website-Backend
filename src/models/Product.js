@@ -34,6 +34,8 @@ const productSchema = new mongoose.Schema(
     allowCustomName: { type: Boolean, default: false },
     // Per-product shipping override (₹). null = use global rate (₹50 TN / ₹80 outer state)
     shippingCharge: { type: Number, min: 0, default: null },
+    // Flag to mark product as an Add-on item (suggested on other products, free shipping)
+    isAddon: { type: Boolean, default: false },
     stock: { type: Number, default: 0, min: 0 },
     rating: { type: Number, default: 0, min: 0, max: 5 },
     reviewCount: { type: Number, default: 0, min: 0 },
