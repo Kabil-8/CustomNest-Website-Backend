@@ -56,6 +56,11 @@ export async function listProducts(req, res, next) {
           slugPatterns.push(/^resin-frames$/i, /^resin-photo-frames$/i, /^resin-memory-frames$/i, /^resin-art$/i);
         }
 
+        // Known aliases for kids special / jumbo toys category
+        if (['kids-special', 'kids-toys-jumbo', 'jumbo-kids-toys', 'kids-toys'].includes(raw.toLowerCase())) {
+          slugPatterns.push(/^kids-special$/i, /^kids-toys-jumbo$/i, /^jumbo-kids-toys$/i);
+        }
+
         const catQuery = {
           $or: [
             { slug: { $in: slugPatterns } },
@@ -177,7 +182,23 @@ async function resolveCategoryId(catInput) {
   if (mongoose.Types.ObjectId.isValid(catInput)) {
     return catInput;
   }
-  const catDoc = await Category.findOne({ slug: catInput });
+  const raw = String(catInput).trim();
+  const escaped = raw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const slugPatterns = [new RegExp(`^${escaped}$`, 'i')];
+
+  if (['kids-special', 'kids-toys-jumbo', 'jumbo-kids-toys'].includes(raw.toLowerCase())) {
+    slugPatterns.push(/^kids-special$/i, /^kids-toys-jumbo$/i);
+  }
+  if (['resin-frames', 'resin-photo-frames', 'resin-memory-frames'].includes(raw.toLowerCase())) {
+    slugPatterns.push(/^resin-frames$/i, /^resin-photo-frames$/i);
+  }
+
+  const catDoc = await Category.findOne({
+    $or: [
+      { slug: { $in: slugPatterns } },
+      { name: new RegExp(escaped, 'i') },
+    ],
+  });
   return catDoc ? catDoc._id : catInput;
 }
 
@@ -244,7 +265,19 @@ export async function deleteProduct(req, res, next) {
 
 export async function listCategories(_req, res, next) {
   try {
-    const categories = await Category.find().sort({ name: 1 });
+    const rawCategories = await Category.find().sort({ name: 1 });
+    const categories = rawCategories.map((c) => {
+      const obj = c.toObject();
+      if (obj.slug === 'kids-toys-jumbo' || /jumbo kids/i.test(obj.name)) {
+        obj.name = 'Kids Special';
+        obj.slug = 'kids-special';
+      }
+      if (obj.slug === 'resin-frames' || /resin/i.test(obj.name)) {
+        obj.name = 'Resin Photo Frames';
+        obj.slug = 'resin-frames';
+      }
+      return obj;
+    });
     res.json({ categories });
   } catch (err) {
     next(err);

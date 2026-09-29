@@ -37,8 +37,8 @@
       "image": "/images/categories/mini-toys.jpg"
     },
     {
-      "slug": "kids-toys-jumbo",
-      "name": "Jumbo Kids Toys",
+      "slug": "kids-special",
+      "name": "Kids Special",
       "collection": "plushies",
       "image": "/images/categories/kids-toys-jumbo.jpg"
     },
@@ -851,7 +851,7 @@
     {
       "slug": "extra-soft-jumbo-toy-038",
       "name": "Extra-Soft Jumbo Toy",
-      "category": "kids-toys-jumbo",
+      "category": "kids-special",
       "price": 920,
       "compareAtPrice": 920,
       "images": [
@@ -871,7 +871,7 @@
     {
       "slug": "playroom-jumbo-toy-039",
       "name": "Playroom Jumbo Toy",
-      "category": "kids-toys-jumbo",
+      "category": "kids-special",
       "price": 1140,
       "compareAtPrice": null,
       "images": [
@@ -891,7 +891,7 @@
     {
       "slug": "huggable-jumbo-toy-040",
       "name": "Huggable Jumbo Toy",
-      "category": "kids-toys-jumbo",
+      "category": "kids-special",
       "price": 1360,
       "compareAtPrice": 1510,
       "images": [
@@ -911,7 +911,7 @@
     {
       "slug": "oversized-jumbo-toy-041",
       "name": "Oversized Jumbo Toy",
-      "category": "kids-toys-jumbo",
+      "category": "kids-special",
       "price": 1580,
       "compareAtPrice": null,
       "images": [
@@ -931,7 +931,7 @@
     {
       "slug": "giant-jumbo-toy-042",
       "name": "Giant Jumbo Toy",
-      "category": "kids-toys-jumbo",
+      "category": "kids-special",
       "price": 1800,
       "compareAtPrice": null,
       "images": [

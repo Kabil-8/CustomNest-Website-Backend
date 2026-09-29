@@ -104,11 +104,28 @@ const PORT = process.env.PORT || 5000;
 async function syncCategories() {
   try {
     const Category = (await import('./models/Category.js')).default;
-    // Align any resin frames category to 'Resin Photo Frames'
+    const Product = (await import('./models/Product.js')).default;
+
+    // 1. Align any resin frames category to 'Resin Photo Frames'
     await Category.updateMany(
       { $or: [{ slug: 'resin-frames' }, { name: /resin/i }] },
       { $set: { name: 'Resin Photo Frames', slug: 'resin-frames', collection: 'resin-frames' } }
     );
+
+    // 2. Align 'Jumbo Kids Toys' to 'Kids Special'
+    const kidsCat = await Category.findOneAndUpdate(
+      { $or: [{ slug: 'kids-special' }, { slug: 'kids-toys-jumbo' }, { name: /jumbo kids/i }, { name: /kids special/i }] },
+      { $set: { name: 'Kids Special', slug: 'kids-special', collection: 'plushies' } },
+      { new: true, upsert: true }
+    );
+
+    // 3. Update any products linked to the old slug or ID
+    if (kidsCat) {
+      await Product.updateMany(
+        { $or: [{ category: 'kids-toys-jumbo' }, { category: 'kids-special' }] },
+        { $set: { category: kidsCat._id } }
+      );
+    }
   } catch (err) {
     console.warn('[server] Category sync skipped:', err.message);
   }
