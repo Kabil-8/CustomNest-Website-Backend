@@ -1,5 +1,5 @@
 import express from 'express';
-import { protect } from '../middleware/auth.js';
+import { requireAuth } from '../middleware/auth.js';
 import { getPublicKey, saveSubscription, removeSubscription } from '../services/pushNotification.js';
 
 const router = express.Router();
@@ -10,7 +10,7 @@ router.get('/vapid-key', (_req, res) => {
 });
 
 // Subscribe to push notifications (admin only)
-router.post('/subscribe', protect, (req, res, next) => {
+router.post('/subscribe', requireAuth, (req, res, next) => {
   try {
     // Only admins can subscribe
     if (req.user.role !== 'admin') {
@@ -32,7 +32,7 @@ router.post('/subscribe', protect, (req, res, next) => {
 });
 
 // Unsubscribe from push notifications
-router.post('/unsubscribe', protect, (req, res, next) => {
+router.post('/unsubscribe', requireAuth, (req, res, next) => {
   try {
     removeSubscription(req.user._id.toString());
     res.json({ message: 'Unsubscribed successfully' });
@@ -42,7 +42,7 @@ router.post('/unsubscribe', protect, (req, res, next) => {
 });
 
 // Test notification (for debugging)
-router.post('/test', protect, async (req, res, next) => {
+router.post('/test', requireAuth, async (req, res, next) => {
   try {
     if (req.user.role !== 'admin') {
       return res.status(403).json({ message: 'Admin access required' });

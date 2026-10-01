@@ -38,3 +38,7 @@ export function requireRole(...roles) {
     next();
   };
 }
+
+// Alias for backwards-compatibility
+export const protect = requireAuth;
+
