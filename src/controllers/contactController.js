@@ -1,5 +1,6 @@
 import ContactMessage from '../models/ContactMessage.js';
 import { AppError } from '../middleware/errorHandler.js';
+import { notifyNewContact } from '../services/notifications.js';
 
 // Public: Submit a message from the Contact page
 export async function createMessage(req, res, next) {
@@ -15,6 +16,9 @@ export async function createMessage(req, res, next) {
       subject: subject || '',
       message,
     });
+
+    // Send push notification to admin about new contact inquiry
+    notifyNewContact(contactMessage).catch(err => console.error('[notification] Failed to send contact notification:', err));
 
     res.status(201).json({ contactMessage });
   } catch (err) {

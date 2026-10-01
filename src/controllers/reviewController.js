@@ -1,6 +1,7 @@
 import Review from '../models/Review.js';
 import Product from '../models/Product.js';
 import { AppError } from '../middleware/errorHandler.js';
+import { notifyNewReview } from '../services/notifications.js';
 
 async function recalcProductStats(productId) {
   const stats = await Review.aggregate([
@@ -46,6 +47,13 @@ export async function createReview(req, res, next) {
       comment,
     });
     await recalcProductStats(review.product);
+
+    // Populate user info for notification
+    await review.populate('user', 'name');
+
+    // Send push notification to admin about new review
+    notifyNewReview(review).catch(err => console.error('[notification] Failed to send review notification:', err));
+
     res.status(201).json({ review });
   } catch (err) {
     next(err);

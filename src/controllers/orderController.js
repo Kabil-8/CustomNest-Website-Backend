@@ -3,6 +3,7 @@ import Order from '../models/Order.js';
 import Product from '../models/Product.js';
 import { AppError } from '../middleware/errorHandler.js';
 import { upload, uploadScreenshot } from '../middleware/upload.js';
+import { notifyNewOrder, notifyPaymentScreenshot } from '../services/notifications.js';
 
 const addressSchema = z.object({
   fullName: z.string().min(2),
@@ -135,6 +136,9 @@ export async function createOrder(req, res, next) {
 
     // Populate user info for response
     await order.populate('user', 'name email');
+
+    // Send push notification to admin about new order
+    notifyNewOrder(order).catch(err => console.error('[notification] Failed to send new order notification:', err));
 
     // Ensure proper ID mapping for frontend
     const orderObj = order.toObject();
@@ -319,6 +323,9 @@ export async function uploadPaymentScreenshot(req, res, next) {
       order.paymentScreenshot = `/uploads/${req.file.filename}`;
       order.paymentStatus = 'Pending Verification';
       await order.save();
+
+      // Send push notification to admin about payment screenshot upload
+      notifyPaymentScreenshot(order).catch(err => console.error('[notification] Failed to send payment notification:', err));
 
       // If this is a custom order, link it to the custom order request NOW that payment screenshot is uploaded!
       if (order.isCustomOrder && order.customOrderId) {

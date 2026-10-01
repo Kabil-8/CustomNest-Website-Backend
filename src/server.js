@@ -23,6 +23,7 @@ import adminRoutes from './routes/adminRoutes.js';
 import paymentRoutes from './routes/paymentRoutes.js';
 import colorRoutes from './routes/colorRoutes.js';
 import contactRoutes from './routes/contactRoutes.js';
+import pushRoutes from './routes/pushRoutes.js';
 
 const app = express();
 
@@ -78,6 +79,7 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/payment', paymentRoutes);
 app.use('/api/colors', colorRoutes);
 app.use('/api/contact', contactRoutes);
+app.use('/api/push', pushRoutes);
 
 import fs from 'node:fs';
 import path from 'node:path';

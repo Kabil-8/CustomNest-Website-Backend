@@ -3,6 +3,7 @@ import CustomOrderRequest from '../models/CustomOrderRequest.js';
 import Order from '../models/Order.js';
 import { AppError } from '../middleware/errorHandler.js';
 import { sendWhatsAppNotification, buildCustomOrderMessage, buildCustomOrderAcceptedMessage } from '../utils/whatsapp.js';
+import { notifyNewCustomOrder } from '../services/notifications.js';
 
 const requestSchema = z.object({
   name:           z.string().min(1),
@@ -71,6 +72,9 @@ export async function submitCustomOrder(req, res, next) {
       messages: [{ sender: 'customer', text: input.description }],
     });
     sendWhatsAppNotification(buildCustomOrderMessage(request)).catch(() => {});
+    
+    // Send push notification to admin about new custom order
+    notifyNewCustomOrder(request).catch(err => console.error('[notification] Failed to send custom order notification:', err));
     
     // Ensure proper ID mapping for frontend
     const obj = request.toObject();
