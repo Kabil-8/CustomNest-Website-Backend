@@ -32,6 +32,14 @@ export function errorHandler(err, req, res, _next) {
     status = 400;
     code = 'VALIDATION_ERROR';
     message = err.errors?.map((e) => `${e.path.join('.') || 'field'}: ${e.message}`).join(', ') || 'Validation error';
+  } else if (err.name === 'ValidationError') {
+    status = 400;
+    code = 'VALIDATION_ERROR';
+    message = Object.values(err.errors || {}).map((e) => e.message).join(', ') || err.message;
+  } else if (err.name === 'CastError') {
+    status = 400;
+    code = 'INVALID_ID';
+    message = `Invalid ID format for ${err.path}`;
   } else if (err.name === 'MulterError') {
     status = 400;
     code = err.code || 'UPLOAD_ERROR';

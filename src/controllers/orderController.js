@@ -345,10 +345,18 @@ export async function uploadPaymentScreenshot(req, res, next) {
     await order.save();
 
     // Persist to MongoDB Atlas so screenshot is preserved across server restarts
-    await persistUploadedFile(req.file, 'Order', order._id);
+    try {
+      await persistUploadedFile(req.file, 'Order', order._id);
+    } catch (persistErr) {
+      console.error('[uploadPaymentScreenshot] File persistence warning:', persistErr);
+    }
 
     // Send push notification to admin about payment screenshot upload
-    notifyPaymentScreenshot(order).catch(err => console.error('[notification] Failed to send payment notification:', err));
+    try {
+      notifyPaymentScreenshot(order).catch(err => console.error('[notification] Failed to send payment notification:', err));
+    } catch (notifErr) {
+      console.error('[uploadPaymentScreenshot] Notification warning:', notifErr);
+    }
 
     // If this is a custom order, link it to the custom order request NOW that payment screenshot is uploaded!
     if (order.isCustomOrder && order.customOrderId) {
