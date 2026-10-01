@@ -68,7 +68,7 @@ export async function createOrder(req, res, next) {
     const items = input.items.map((i) => {
       const product = productMap.get(i.productId);
       if (!product) throw new AppError(`Product ${i.productId} not found.`, 400);
-      if (product.stock < i.quantity) throw new AppError(`${product.name} is out of stock.`, 409, 'OUT_OF_STOCK');
+      // Handmade crochet & resin pieces are handcrafted made-to-order
       subtotal += product.price * i.quantity;
 
       const catSlug = (product.category && typeof product.category === 'object' ? product.category.slug : '') || '';
@@ -325,57 +325,47 @@ export async function updateOrderStatus(req, res, next) {
 
 export async function uploadPaymentScreenshot(req, res, next) {
   try {
-    // Use dedicated uploadScreenshot middleware with 5MB limit
-    uploadScreenshot.single('paymentScreenshot')(req, res, async (err) => {
-      if (err) {
-        if (err.code === 'LIMIT_FILE_SIZE') {
-          return next(new AppError('Payment screenshot cannot exceed 5MB. Please choose an image under 5MB.', 400, 'LIMIT_FILE_SIZE'));
-        }
-        return next(new AppError(err.message || 'File upload failed', 400));
+    if (!req.file) {
+      throw new AppError('No payment screenshot file uploaded. Please select an image.', 400);
+    }
+
+    const order = await Order.findById(req.params.id);
+    if (!order) {
+      throw new AppError('Order not found. Please refresh and try again.', 404);
+    }
+
+    // Check order belongs to user (or admin)
+    if (order.user.toString() !== req.user._id.toString() && req.user.role !== 'admin') {
+      throw new AppError('Not authorized.', 403);
+    }
+
+    // Save the screenshot path to the order
+    order.paymentScreenshot = `/uploads/${req.file.filename}`;
+    order.paymentStatus = 'Pending Verification';
+    await order.save();
+
+    // Persist to MongoDB Atlas so screenshot is preserved across server restarts
+    await persistUploadedFile(req.file, 'Order', order._id);
+
+    // Send push notification to admin about payment screenshot upload
+    notifyPaymentScreenshot(order).catch(err => console.error('[notification] Failed to send payment notification:', err));
+
+    // If this is a custom order, link it to the custom order request NOW that payment screenshot is uploaded!
+    if (order.isCustomOrder && order.customOrderId) {
+      try {
+        const CustomOrderRequest = (await import('../models/CustomOrderRequest.js')).default;
+        await CustomOrderRequest.findByIdAndUpdate(order.customOrderId, { linkedOrderId: order._id });
+      } catch (e) {
+        console.error('Failed to link custom order on screenshot upload', e);
       }
+    }
 
-      const order = await Order.findById(req.params.id);
-      if (!order) {
-        return next(new AppError('Order not found.', 404));
-      }
+    const orderObj = order.toObject();
+    orderObj.id = orderObj._id;
+    delete orderObj._id;
+    delete orderObj.__v;
 
-      // Check order belongs to user (or admin)
-      if (order.user.toString() !== req.user._id.toString() && req.user.role !== 'admin') {
-        return next(new AppError('Not authorized.', 403));
-      }
-
-      if (!req.file) {
-        return next(new AppError('No file uploaded.', 400));
-      }
-
-      // Save the screenshot path to the order
-      order.paymentScreenshot = `/uploads/${req.file.filename}`;
-      order.paymentStatus = 'Pending Verification';
-      await order.save();
-
-      // Persist to MongoDB Atlas so screenshot is preserved across server restarts
-      await persistUploadedFile(req.file, 'Order', order._id);
-
-      // Send push notification to admin about payment screenshot upload
-      notifyPaymentScreenshot(order).catch(err => console.error('[notification] Failed to send payment notification:', err));
-
-      // If this is a custom order, link it to the custom order request NOW that payment screenshot is uploaded!
-      if (order.isCustomOrder && order.customOrderId) {
-        try {
-          const CustomOrderRequest = (await import('../models/CustomOrderRequest.js')).default;
-          await CustomOrderRequest.findByIdAndUpdate(order.customOrderId, { linkedOrderId: order._id });
-        } catch (e) {
-          console.error('Failed to link custom order on screenshot upload', e);
-        }
-      }
-
-      const orderObj = order.toObject();
-      orderObj.id = orderObj._id;
-      delete orderObj._id;
-      delete orderObj.__v;
-
-      res.json({ order: orderObj, message: 'Screenshot uploaded successfully' });
-    });
+    res.json({ order: orderObj, message: 'Screenshot uploaded successfully' });
   } catch (err) {
     next(err);
   }

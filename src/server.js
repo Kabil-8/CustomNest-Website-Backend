@@ -202,6 +202,12 @@ async function syncCategories() {
         { $set: { category: kidsCat._id } }
       );
     }
+
+    // 4. Ensure all handmade crochet & resin products have active stock
+    await Product.updateMany(
+      { $or: [{ stock: { $lte: 0 } }, { stock: { $exists: false } }] },
+      { $set: { stock: 999 } }
+    );
   } catch (err) {
     console.warn('[server] Category sync skipped:', err.message);
   }
