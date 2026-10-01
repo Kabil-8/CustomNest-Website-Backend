@@ -35,6 +35,7 @@ app.use(helmet({
 // CORS configuration supporting storefront origin, Vercel preview deploys, and local dev
 const allowedOrigins = [
   'https://thecustomnest.vercel.app',
+  'https://thecustomnest.shop',
   'http://localhost:5173',
   'http://localhost:3000',
   'http://localhost:5000',
@@ -149,14 +150,14 @@ const serveUploadedFile = async (req, res, next) => {
       res.setHeader('Content-Type', fileDoc.mimeType || 'image/jpeg');
 
       if (fileDoc.data) {
-        fs.promises.writeFile(diskPath, fileDoc.data).catch(() => {});
+        fs.promises.writeFile(diskPath, fileDoc.data).catch(() => { });
         return res.send(fileDoc.data);
       }
       if (fileDoc.base64) {
         const matches = fileDoc.base64.match(/^data:([A-Za-z-+/]+);base64,(.+)$/);
         if (matches) {
           const buf = Buffer.from(matches[2], 'base64');
-          fs.promises.writeFile(diskPath, buf).catch(() => {});
+          fs.promises.writeFile(diskPath, buf).catch(() => { });
           return res.send(buf);
         }
       }

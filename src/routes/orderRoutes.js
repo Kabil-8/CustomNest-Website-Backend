@@ -2,6 +2,7 @@ import { Router } from 'express';
 import {
   createOrder,
   listMyOrders,
+  getMyBadgeCount,
   getMyOrder,
   listAllOrders,
   updateOrderStatus,
@@ -16,6 +17,7 @@ const router = Router();
 router.use(requireAuth);
 
 router.post('/', createOrder);
+router.get('/badge-count', getMyBadgeCount);
 router.get('/my', listMyOrders);
 router.get('/mine', listMyOrders);
 router.get('/my/:id', getMyOrder);

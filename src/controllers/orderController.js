@@ -194,6 +194,33 @@ export async function listMyOrders(req, res, next) {
   }
 }
 
+// Ultra-fast lightweight count query for customer navbar badge (replaces heavy polling)
+export async function getMyBadgeCount(req, res, next) {
+  try {
+    const CustomOrderRequest = (await import('../models/CustomOrderRequest.js')).default;
+    const [activeOrders, activeCustom] = await Promise.all([
+      Order.countDocuments({
+        user: req.user._id,
+        status: { $nin: ['Delivered', 'Cancelled'] },
+        $or: [
+          { paymentScreenshot: { $exists: true, $nin: [null, ''] } },
+          { paymentStatus: { $in: ['Paid', 'Pending Verification', 'Confirmed', 'Processing', 'Shipped'] } },
+        ],
+      }),
+      CustomOrderRequest.countDocuments({
+        user: req.user._id,
+        $or: [
+          { status: 'Accepted' },
+          { 'messages.sender': 'admin' },
+        ],
+      }),
+    ]);
+    res.json({ count: activeOrders + activeCustom });
+  } catch (err) {
+    next(err);
+  }
+}
+
 export async function getMyOrder(req, res, next) {
   try {
     const isUserAdmin = req.user && req.user.role === 'admin';
