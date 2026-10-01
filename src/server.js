@@ -89,14 +89,57 @@ if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }
 
+import UploadedFile from './models/UploadedFile.js';
+
 // Uploaded reference images (custom order attachments) are served
-// statically; validated on upload by middleware/upload.js.
+// statically from disk first; if disk was wiped by Render restart,
+// served seamlessly from persistent MongoDB Atlas storage!
 app.use('/uploads', express.static(uploadDir, {
   setHeaders: (res) => {
     res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
     res.setHeader('Access-Control-Allow-Origin', '*');
   },
 }));
+
+app.get('/uploads/:filename', async (req, res, next) => {
+  try {
+    const filename = req.params.filename;
+    const diskPath = path.join(uploadDir, filename);
+
+    // 1. Try disk first
+    if (fs.existsSync(diskPath)) {
+      res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      return res.sendFile(diskPath);
+    }
+
+    // 2. Fetch from persistent MongoDB storage
+    const fileDoc = await UploadedFile.findOne({ filename });
+    if (fileDoc && (fileDoc.data || fileDoc.base64)) {
+      res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+      res.setHeader('Content-Type', fileDoc.mimeType || 'image/jpeg');
+
+      if (fileDoc.data) {
+        fs.promises.writeFile(diskPath, fileDoc.data).catch(() => {});
+        return res.send(fileDoc.data);
+      }
+      if (fileDoc.base64) {
+        const matches = fileDoc.base64.match(/^data:([A-Za-z-+/]+);base64,(.+)$/);
+        if (matches) {
+          const buf = Buffer.from(matches[2], 'base64');
+          fs.promises.writeFile(diskPath, buf).catch(() => {});
+          return res.send(buf);
+        }
+      }
+    }
+
+    return res.status(404).send('Image file not found on server or database.');
+  } catch (err) {
+    next(err);
+  }
+});
 
 app.use(notFound);
 app.use(errorHandler);

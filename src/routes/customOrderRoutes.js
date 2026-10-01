@@ -8,6 +8,8 @@ import {
   customerSendMessage,
   createOrderFromCustomRequest,
   deleteCustomOrder,
+  deleteCustomOrderImage,
+  adminUploadCustomOrderImage,
 } from '../controllers/customOrderController.js';
 import { requireAuth, requireRole } from '../middleware/auth.js';
 import { upload } from '../middleware/upload.js';
@@ -32,6 +34,9 @@ router.post('/:id/checkout',   requireAuth, createOrderFromCustomRequest);
 router.get('/',                     requireAuth, requireRole('admin'), listCustomOrders);
 router.patch('/:id/status',         requireAuth, requireRole('admin'), updateCustomOrderStatus);
 router.post('/:id/admin-message',   requireAuth, requireRole('admin'), adminSendMessage);
+router.post('/:id/images',          requireAuth, requireRole('admin'), upload.single('image'), adminUploadCustomOrderImage);
+router.delete('/:id/images/:index', requireAuth, requireRole('admin'), deleteCustomOrderImage);
 router.delete('/:id',               requireAuth, requireRole('admin'), deleteCustomOrder);
 
 export default router;
+

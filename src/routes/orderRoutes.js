@@ -6,6 +6,7 @@ import {
   listAllOrders,
   updateOrderStatus,
   uploadPaymentScreenshot,
+  deletePaymentScreenshot,
   deleteOrder,
 } from '../controllers/orderController.js';
 import { requireAuth, requireRole } from '../middleware/auth.js';
@@ -24,5 +25,6 @@ router.get('/', requireRole('admin'), listAllOrders);
 router.patch('/:id/status', requireRole('admin'), updateOrderStatus);
 router.delete('/:id', requireRole('admin'), deleteOrder);
 router.post('/:id/upload-screenshot', uploadPaymentScreenshot);
+router.delete('/:id/payment-screenshot', deletePaymentScreenshot);
 
 export default router;

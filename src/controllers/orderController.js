@@ -1,9 +1,11 @@
 import { z } from 'zod';
 import Order from '../models/Order.js';
 import Product from '../models/Product.js';
+import UploadedFile from '../models/UploadedFile.js';
 import { AppError } from '../middleware/errorHandler.js';
 import { upload, uploadScreenshot } from '../middleware/upload.js';
 import { notifyNewOrder, notifyPaymentScreenshot } from '../services/notifications.js';
+import { persistUploadedFile, removeUploadedFile } from './customOrderController.js';
 
 const addressSchema = z.object({
   fullName: z.string().min(2),
@@ -324,6 +326,9 @@ export async function uploadPaymentScreenshot(req, res, next) {
       order.paymentStatus = 'Pending Verification';
       await order.save();
 
+      // Persist to MongoDB Atlas so screenshot is preserved across server restarts
+      await persistUploadedFile(req.file, 'Order', order._id);
+
       // Send push notification to admin about payment screenshot upload
       notifyPaymentScreenshot(order).catch(err => console.error('[notification] Failed to send payment notification:', err));
 
@@ -349,11 +354,50 @@ export async function uploadPaymentScreenshot(req, res, next) {
   }
 }
 
-// Admin: delete order
+// Delete payment screenshot to free storage space
+export async function deletePaymentScreenshot(req, res, next) {
+  try {
+    const order = await Order.findById(req.params.id);
+    if (!order) {
+      throw new AppError('Order not found.', 404);
+    }
+
+    if (order.user.toString() !== req.user._id.toString() && req.user.role !== 'admin') {
+      throw new AppError('Not authorized.', 403);
+    }
+
+    if (order.paymentScreenshot) {
+      await removeUploadedFile(order.paymentScreenshot);
+      order.paymentScreenshot = null;
+      if (order.paymentStatus === 'Pending Verification') {
+        order.paymentStatus = 'Pending';
+      }
+      await order.save();
+    }
+
+    const orderObj = order.toObject();
+    orderObj.id = orderObj._id;
+    delete orderObj._id;
+    delete orderObj.__v;
+
+    res.json({ order: orderObj, message: 'Payment screenshot deleted successfully' });
+  } catch (err) {
+    next(err);
+  }
+}
+
+// Admin: delete order & associated files
 export async function deleteOrder(req, res, next) {
   try {
-    const order = await Order.findByIdAndDelete(req.params.id);
+    const order = await Order.findById(req.params.id);
     if (!order) throw new AppError('Order not found.', 404);
+
+    if (order.paymentScreenshot) {
+      await removeUploadedFile(order.paymentScreenshot);
+    }
+    await UploadedFile.deleteMany({ relatedId: order._id }).catch(() => {});
+
+    await Order.findByIdAndDelete(req.params.id);
     res.status(204).send();
   } catch (err) {
     next(err);
