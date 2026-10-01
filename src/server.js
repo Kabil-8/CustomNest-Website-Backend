@@ -32,28 +32,55 @@ app.use(helmet({
   crossOriginResourcePolicy: { policy: 'cross-origin' },
 }));
 
-// CORS is locked to the configured storefront origin only, with credentials
+// CORS configuration supporting storefront origin, Vercel preview deploys, and local dev
 const allowedOrigins = [
   'https://thecustomnest.vercel.app',
   'http://localhost:5173',
+  'http://localhost:3000',
+  'http://localhost:5000',
   ...(process.env.CLIENT_ORIGIN
-    ? process.env.CLIENT_ORIGIN.split(',').map((origin) => origin.trim().replace(/\/$/, ''))
+    ? process.env.CLIENT_ORIGIN.split(',').map((origin) => origin.trim().replace(/\/+$/, ''))
     : []),
 ];
+
+function isOriginAllowed(origin) {
+  if (!origin) return true;
+  const clean = origin.trim().replace(/\/+$/, '');
+  return (
+    allowedOrigins.includes(clean) ||
+    clean.endsWith('.vercel.app') ||
+    clean.includes('localhost') ||
+    clean.includes('127.0.0.1')
+  );
+}
+
+// Global CORS preflight and header middleware ensuring headers are ALWAYS attached
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (isOriginAllowed(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin || '*');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, Accept, Origin');
+  }
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(204);
+  }
+  next();
+});
 
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests without an Origin header (Postman, server-to-server, etc.)
-      if (!origin || allowedOrigins.includes(origin)) {
+      if (isOriginAllowed(origin)) {
         callback(null, true);
       } else {
-        callback(new Error(`CORS: Origin ${origin} not allowed`));
+        callback(null, false);
       }
     },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
   })
 );
 
@@ -91,17 +118,17 @@ if (!fs.existsSync(uploadDir)) {
 
 import UploadedFile from './models/UploadedFile.js';
 
-// Uploaded reference images (custom order attachments) are served
-// statically from disk first; if disk was wiped by Render restart,
+// Uploaded reference images (custom order attachments) and payment screenshots
+// are served statically from disk first; if disk was wiped by Render restart,
 // served seamlessly from persistent MongoDB Atlas storage!
-app.use('/uploads', express.static(uploadDir, {
+app.use(['/uploads', '/api/uploads'], express.static(uploadDir, {
   setHeaders: (res) => {
     res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
     res.setHeader('Access-Control-Allow-Origin', '*');
   },
 }));
 
-app.get('/uploads/:filename', async (req, res, next) => {
+const serveUploadedFile = async (req, res, next) => {
   try {
     const filename = req.params.filename;
     const diskPath = path.join(uploadDir, filename);
@@ -139,7 +166,10 @@ app.get('/uploads/:filename', async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-});
+};
+
+app.get('/uploads/:filename', serveUploadedFile);
+app.get('/api/uploads/:filename', serveUploadedFile);
 
 app.use(notFound);
 app.use(errorHandler);

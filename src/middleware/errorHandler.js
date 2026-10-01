@@ -6,6 +6,12 @@ export function notFound(req, res) {
 }
 
 export function errorHandler(err, req, res, _next) {
+  if (req.headers.origin) {
+    res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, Accept, Origin');
+  }
+
   let status = err.statusCode || err.status || 500;
   const isProd = process.env.NODE_ENV === 'production';
 
