@@ -103,10 +103,14 @@ export async function createOrder(req, res, next) {
     });
 
     // Determine shipping:
+    // Free shipping threshold: orders beyond ₹799 get 100% free shipping!
     // If order has ONLY add-on products -> ₹0 shipping money!
     // If order has regular products -> regular products determine shipping rate (add-ons do not add shipping)
+    const FREE_SHIPPING_THRESHOLD = 799;
     let shipping = 0;
-    if (hasRegularProducts) {
+    if (subtotal > FREE_SHIPPING_THRESHOLD) {
+      shipping = 0; // Free shipping for orders above ₹799!
+    } else if (hasRegularProducts) {
       const globalRate = input.isOuterState ? SHIPPING_OUTER : SHIPPING_TN;
       shipping = maxPerProductShipping !== null ? maxPerProductShipping : globalRate;
     } else {

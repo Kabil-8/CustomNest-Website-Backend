@@ -324,8 +324,8 @@ export async function createOrderFromCustomRequest(req, res, next) {
 
     const orderNumber = `TCN-C${Math.floor(100000 + Math.random() * 900000)}`;
     const quantity = customReq.quantity ?? 1;
-    const shipping = 50 * quantity;
     const subtotal = customReq.agreedPrice;
+    const shipping = subtotal > 799 ? 0 : 50 * quantity;
     const total = subtotal + shipping;
 
     // Check if there is already an existing pending order for this custom request
